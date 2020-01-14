@@ -1,2 +1,2 @@
-# fe-vegetabeli
+# feVegetabeli
 Front End Vegetabeli App
