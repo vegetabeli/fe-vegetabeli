@@ -1,6 +1,4 @@
 
-
-
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
@@ -36,4 +34,3 @@ const Navigator = createStackNavigator({
 const App = createAppContainer(Navigator);
 
 export default App;
-
