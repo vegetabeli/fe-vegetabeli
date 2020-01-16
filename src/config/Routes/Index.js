@@ -34,7 +34,7 @@ const Route2 = createStackNavigator(
 
 const RouteTab = createBottomTabNavigator(
   {
-    Shop: {
+    Belanja: {
       screen: Shop,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
@@ -42,7 +42,7 @@ const RouteTab = createBottomTabNavigator(
         ),
       },
     },
-    Transaction: {
+    Transaksi: {
       screen: Transaction,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
@@ -50,7 +50,7 @@ const RouteTab = createBottomTabNavigator(
         ),
       },
     },
-    Helps: {
+    Bantuan: {
       screen: Helps,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
@@ -59,7 +59,7 @@ const RouteTab = createBottomTabNavigator(
       },
     },
 
-    HomeLogin: {
+    Profil: {
       screen: HomeLogin,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
@@ -69,7 +69,7 @@ const RouteTab = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Shop',
+    initialRouteName: 'Belanja',
     tabBarOptions: {
       activeTintColor: '#F15B5D',
     },

@@ -1,18 +1,31 @@
 import React, {Component} from 'react';
 import {
+  Image,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Image
+  View,
 } from 'react-native';
-import {Button, Icon, SearchBar, Card} from 'react-native-elements';
-import driver from '../../../assets/image/bike.png'
+import {Button, Icon, SearchBar} from 'react-native-elements';
+import driver from '../../../assets/image/bike.png';
+import Category from '../../../components/moleculs/Category/Category';
+import ProductBestSeller from '../../../components/moleculs/ProductBestSeller/ProductBestSeller';
+import { FloatingAction } from "react-native-floating-action";
 
 class Belanja extends Component {
+  state = {
+    search: ''
+  };
+
+  updateSearch = search => {
+    this.setState({search});
+  };
+
   render() {
+    const {search} = this.state;
+
     return (
       <View style={styles.parent}>
         <StatusBar barStyle="dark-content" backgroundColor="white" />
@@ -20,6 +33,8 @@ class Belanja extends Component {
           <SearchBar
             inputStyle={{fontSize: 14}}
             containerStyle={styles.searchBar}
+            onChangeText={this.updateSearch}
+            value={search}
             platform="android"
             placeholder="Cari sayur, bumbu dapur, lauk pauk"
           />
@@ -36,6 +51,8 @@ class Belanja extends Component {
               containerStyle={styles.iconStyle}
             />
             <Text style={styles.textSize}>BAKUL DAWET</Text>
+          </View>
+          <View style={styles.btnGanti}>
             <Button
               title="GANTI"
               titleStyle={styles.titleBtn}
@@ -47,91 +64,11 @@ class Belanja extends Component {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.categoryBar}>
             <Text style={styles.fontCategory}>Telusuri Jenis Produk</Text>
-            <View style={styles.categoryTop}>
-              <View style={styles.card1}>
-                <Icon
-                  name="store"
-                  size={28}
-                  color="brown"
-                  containerStyle={styles.iconStyle}
-                />
-                <View style={styles.textCategory}>
-                  <Text style={styles.textCategory}>Sayuran</Text>
-                </View>
-              </View>
-              <View style={[styles.card1, styles.cardMid]}>
-                <Icon
-                  name="store"
-                  size={28}
-                  color="gray"
-                  containerStyle={styles.iconStyle}
-                />
-                <View style={styles.textCategory}>
-                  <Text style={styles.textCategory}>Lauk Pauk</Text>
-                </View>
-              </View>
-              <View style={styles.card1}>
-                <Icon
-                  name="store"
-                  size={28}
-                  color="green"
-                  containerStyle={styles.iconStyle}
-                />
-                <View style={styles.textCategory}>
-                  <Text style={styles.textCategory}>Bumbu</Text>
-                </View>
-              </View>
-              <View style={[styles.card1, styles.cardMid]}>
-                <Icon
-                  name="store"
-                  size={28}
-                  color="blue"
-                  containerStyle={styles.iconStyle}
-                />
-                <View style={styles.textCategory}>
-                  <Text style={styles.textCategory}>Seafood</Text>
-                </View>
-              </View>
-              <View style={styles.card1}>
-                <Icon
-                  name="store"
-                  size={28}
-                  color="red"
-                  containerStyle={styles.iconStyle}
-                />
-                <View style={styles.textCategory}>
-                  <Text style={styles.textCategory}>Sembako</Text>
-                </View>
-              </View>
-            </View>
-            <View style={styles.categoryBot}>
-              <View style={styles.card1}>
-                <Icon
-                  name="store"
-                  size={28}
-                  color="purple"
-                  containerStyle={styles.iconStyle}
-                />
-                <View style={styles.textCategory}>
-                  <Text style={styles.textCategory}>Jajanan</Text>
-                </View>
-              </View>
-              <View style={[styles.card1, styles.cardMid]}>
-                <Icon
-                  name="store"
-                  size={28}
-                  color="black"
-                  containerStyle={styles.iconStyle}
-                />
-                <View style={styles.textCategory}>
-                  <Text style={styles.textCategory}>Buah</Text>
-                </View>
-              </View>
-            </View>
+            <Category />
           </View>
           <View style={styles.img}>
             <View style={styles.rounded}>
-            <Image source={driver} style={styles.imgStyle}/>
+              <Image source={driver} style={styles.imgStyle} />
             </View>
             <View style={styles.textPromo}>
               <Text style={styles.ok}>PROMO BERLIMPAH, SLUR!</Text>
@@ -144,23 +81,9 @@ class Belanja extends Component {
               <Text style={styles.fontSeeAll}>Lihat semua</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.listProduk}>
-            <View style={styles.produkStyle}>
-              <Card containerStyle={styles.cardStyle} />
-            </View>
-            <View style={styles.produkStyle1}>
-              <Text>Nama Produk</Text>
-              <Text style={styles.fontSeeAll}>Rp. Harga /pcs</Text>
-            </View>
-            <View style={styles.produkStyle2}>
-              <Button
-                title="Tambahkan"
-                titleStyle={styles.titleBtn}
-                buttonStyle={styles.btnColor}
-              />
-            </View>
-          </View>
+          <ProductBestSeller />
         </ScrollView>
+        <FloatingAction color="skyblue"/>
       </View>
     );
   }
@@ -189,19 +112,25 @@ const styles = StyleSheet.create({
   },
   addressBar: {
     width: '90%',
-    aspectRatio: 4 / 1,
+    height: 90,
     flexDirection: 'column',
+    justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: '#F9F9F9',
     marginTop: -50,
+    marginHorizontal: 10,
     borderRadius: 10,
     elevation: 2,
   },
   categoryBar: {
     height: 180,
     backgroundColor: '#F9F9F9',
-    marginVertical: 10,
-    flexDirection: 'column',
+    marginTop: 20,
+  },
+  btnGanti: {
+    position: 'absolute',
+    alignSelf: 'flex-end',
+    marginLeft: '65%',
   },
   textGray: {
     fontSize: 13,
@@ -220,14 +149,14 @@ const styles = StyleSheet.create({
   },
   textStore: {
     flexDirection: 'row',
+    alignContent: 'center',
   },
   btnAdress: {
-    marginLeft: 110,
-    marginTop: 2,
+    marginTop: 10,
   },
   btnColor: {
     backgroundColor: '#F15B5D',
-    width: 100,
+    width: '80%',
     height: 40,
     borderRadius: 6,
     elevation: 2,
@@ -249,24 +178,24 @@ const styles = StyleSheet.create({
   categoryTop: {
     flexDirection: 'row',
     marginTop: 8,
-    marginHorizontal: 28,
+    marginHorizontal: '5%',
   },
   categoryBot: {
     flexDirection: 'row',
-    marginTop: 24,
-    marginHorizontal: 28,
+    marginTop: 4,
+    marginHorizontal: '5%',
   },
   card1: {
     backgroundColor: 'white',
+    height: '55%',
     width: 50,
-    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
     elevation: 2.5,
   },
   cardMid: {
-    marginHorizontal: 22,
+    marginHorizontal: '7%',
   },
   textCategory: {
     fontSize: 12,
@@ -281,7 +210,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginHorizontal: 20,
     borderRadius: 10,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   bestSeller: {
     width: '95%',
@@ -298,7 +227,7 @@ const styles = StyleSheet.create({
   },
   fontSeeAll: {
     color: '#F15B5D',
-    fontSize: 13
+    fontSize: 13,
   },
   listProduk: {
     flexDirection: 'row',
@@ -331,23 +260,22 @@ const styles = StyleSheet.create({
   imgStyle: {
     height: 75,
     width: 75,
-    marginLeft: 10
+    marginLeft: 10,
   },
   rounded: {
     backgroundColor: '#F1F1F1',
     width: '35%',
     borderTopRightRadius: 50,
-    borderBottomRightRadius: 6
-    
+    borderBottomRightRadius: 6,
   },
   textPromo: {
     position: 'absolute',
     alignSelf: 'flex-end',
   },
-  ok : {
+  ok: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: 'white',
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 });
