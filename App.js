@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Router from './src/Config/Router';
+import Router from './src/config/Routes/Index';
 
 
 class App extends Component {
@@ -8,6 +8,6 @@ class App extends Component {
       <Router/>
     )
   }
-};
+}
 
 export default App;
