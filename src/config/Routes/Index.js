@@ -6,30 +6,29 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {
   Helps,
   Shop,
-  Home,
-  Landing,
   Transaction,
-  Profile,
-} from '../../containers/pages/index';
+  HomeLogin,
+  Login,
+  Register
+} from '../../Container/Pages/index';
 import {Icon} from 'react-native-elements';
 
-const Route1 = createStackNavigator(
-  {
-    Home,
-  },
-  {
-    headerMode: 'none',
-    initialRouteName: 'Home',
-  },
-);
 
 const Route2 = createStackNavigator(
   {
-    Landing,
+    HomeLogin: {
+      screen: HomeLogin,
+    },
+    Login : {
+      screen: Login,
+    },
+    Register: {
+      screen: Register,
+    },
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Landing',
+    initialRouteName: 'HomeLogin',
   },
 );
 
@@ -60,8 +59,8 @@ const RouteTab = createBottomTabNavigator(
       },
     },
 
-    Profile: {
-      screen: Profile,
+    HomeLogin: {
+      screen: HomeLogin,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="user" type="font-awesome" size={24} color={tintColor} />
@@ -79,7 +78,6 @@ const RouteTab = createBottomTabNavigator(
 
 const Router = createSwitchNavigator(
   {
-    Route1,
     Route2,
     RouteTab,
   },
