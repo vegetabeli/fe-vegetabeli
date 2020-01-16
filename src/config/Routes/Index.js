@@ -4,11 +4,11 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {
-  Bantuan,
-  Belanja,
+  Helps,
+  Shop,
   Home,
   Landing,
-  Transaksi,
+  Transaction,
   Profile,
 } from '../../containers/pages/index';
 import {Icon} from 'react-native-elements';
@@ -35,24 +35,24 @@ const Route2 = createStackNavigator(
 
 const RouteTab = createBottomTabNavigator(
   {
-    Belanja: {
-      screen: Belanja,
+    Shop: {
+      screen: Shop,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="store" size={24} color={tintColor} />
         ),
       },
     },
-    Transaksi: {
-      screen: Transaksi,
+    Transaction: {
+      screen: Transaction,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="receipt" size={24} color={tintColor} />
         ),
       },
     },
-    Bantuan: {
-      screen: Bantuan,
+    Helps: {
+      screen: Helps,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="help" size={24} color={tintColor} />
@@ -70,7 +70,7 @@ const RouteTab = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Belanja',
+    initialRouteName: 'Shop',
     tabBarOptions: {
       activeTintColor: '#F15B5D',
     },
