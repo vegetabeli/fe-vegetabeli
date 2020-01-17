@@ -24,13 +24,13 @@ export default StyleSheet.create({
   //Home Icon
   homeIconContainer: {
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 10,
   },
   homeTopIconView: {
     marginBottom: 15,
   },
   homeIcon: {
-    marginBottom: 5,
+    marginBottom: 10,
     backgroundColor: 'rgba(241, 91, 93,0.7)',
     width: 85,
     height: 85,
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     borderWidth: 10,
     borderColor: 'pink',
     justifyContent: 'center',
-    alignSelf:'center'
+    alignSelf: 'center',
   },
   homeIconLogo: {
     alignSelf: 'center',
@@ -48,11 +48,10 @@ export default StyleSheet.create({
     alignSelf: 'center',
     fontSize: 18,
     fontWeight: '700',
+    letterSpacing: 0.3,
   },
-  //Input
-
-  //Input Email
-  inputContainer: {height: 130, paddingHorizontal: 15},
+  //Input EMail
+  inputContainer: {height: 40, paddingHorizontal: 15},
   inputView1: {height: 70},
   inputView2: {position: 'relative'},
   inputText: {color: 'gray'},
@@ -63,70 +62,33 @@ export default StyleSheet.create({
     padding: 0,
     paddingLeft: 35,
   },
-  inputLogoEmail: {position: 'absolute', top: 23, left: 5},
+  inputLogoEmail: {position: 'absolute', top: 5, left: 5},
 
-  //Input Password
-  inputPassword: {height: 50},
-  inputPasswordIcon: {position: 'absolute', top: 23, left: 7},
-
-  //Question Text
-  questionTextContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-    justifyContent: 'space-between',
-  },
-  questionTextView: {flexDirection: 'row', alignItems: 'center'},
-  questionTextColor: {
-    color: 'rgb(241, 91, 93)',
-  },
-
-  //Picker
-  picker: {
-    height: 50,
-    width: 110,
-    color: 'gray',
-  },
-
-  //Button
-  buttonContainer: {
-    alignItems: 'center',
-  },
-  buttonRegister: {
-    backgroundColor: 'rgb(241, 91, 93)',
-    height: 37,
-    width: 225,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 2,
-    marginBottom: 5,
-  },
-  buttonRegisterText: {color: 'white', fontSize: 18, letterSpacing: 0.5},
-  buttonCancelContainer: {
-    height: 37,
-    width: 225,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonCancelText: {fontSize: 16, color: 'gray', letterSpacing: 0.3},
-
-  //Forgot Password
-  forgotView: {
-    flexDirection:'row'
-  },
-  forgotText: {
-    color:'gray',
-    fontSize:12,
-    letterSpacing:0.2
-  },
-
-  //Text Condition
-  conditionView: {
-    height: 160,
+  //Text Information
+  textInformationView: {alignItems: 'center', marginBottom: 25,marginTop:40},
+  textInformationText: {
+    textAlign: 'center',
+    fontSize: 14,
     width: 300,
-    alignSelf: 'center',
-    justifyContent: 'center',
+    letterSpacing: 0.5,
   },
+  buttonResetView: {
+    backgroundColor: 'rgb(241, 91, 93)',
+    width: 230,
+    height: 38,
+    alignSelf: 'center',
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+
+  buttonResetText: {color: 'white', fontSize: 16, letterSpacing: 1.5},
+  buttonCancelView: {alignItems: 'center', justifyContent: 'center'},
+  buttonCancelText: {fontSize: 16, color: 'gray', letterSpacing: 0.2},
+
+  //Conditon
+  conditionView: {height: 165, alignSelf: 'center', justifyContent: 'flex-end'},
   conditionText: {
     textAlign: 'center',
     color: 'gray',
@@ -134,4 +96,10 @@ export default StyleSheet.create({
     letterSpacing: 0.3,
   },
   conditionText2: {color: 'black', fontWeight: 'bold'},
+  //Picker
+  picker: {
+    height: 50,
+    width: 110,
+    color: 'gray',
+  },
 });

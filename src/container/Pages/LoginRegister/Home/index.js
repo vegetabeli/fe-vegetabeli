@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Text, View, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import GoogleLogo from '../../../../Assets/image/google.png'
+import GoogleLogo from '../../../../assets/image/google.png'
 import styles from "./styles"
 
 class LoginRegisterHome extends Component {
