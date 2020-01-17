@@ -5,6 +5,10 @@ import Transaction from './Transaction/Transaction'
 import HomeLogin from './LoginRegister/HomeLogin/index'
 import Login from './LoginRegister/LoginRegister/Login/index'
 import Register from './LoginRegister/LoginRegister/Register/index'
+import Profile from './Profile/profileHome/Index';
+import aboutUs from './Profile/about/aboutUs/Index';
+import privacyPolicy from './Profile/about/privacyPolicy/Index';
+import termOfUse from './Profile/about/termOfUse/Index';
 
 export {
     HomeLogin,
@@ -13,5 +17,9 @@ export {
     Landing,
     Transaction,
     Login,
-    Register
+    Register,
+    Profile,
+    aboutUs,
+    privacyPolicy,
+    termOfUse,
 }

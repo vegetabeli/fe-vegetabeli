@@ -98,7 +98,7 @@ class Login extends Component {
               ToastAndroid.SHORT,
               ToastAndroid.CENTER,
               );
-              this.props.navigation.navigate('Belanja'); //Redirect Home
+              this.props.navigation.navigate('RouteTabUser'); //Redirect Home
           }
         })
         .catch(err => {
