@@ -10,7 +10,12 @@ import {
   HomeLogin,
   Login,
   Register,
-  ListShop
+  ListShop,
+  Profile,
+  aboutUs,
+  privacyPolicy,
+  termOfUse,
+  ListCategory
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 // import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
@@ -23,7 +28,7 @@ import {Icon} from 'react-native-elements';
 const Route1 = createStackNavigator(
   {
     ListShop : {
-      screen: ListShop,
+      screen: ListCategory,
     }
   },
   {
@@ -45,11 +50,27 @@ const Route2 = createStackNavigator(
     },
     insertEmail,
     insertCode,
-    insertPassword
-  },
-  {
-    headerMode: 'none',
+    insertPassword,
+    },
+    {
+      headerMode: 'none',
     initialRouteName: 'HomeLogin',
+  },
+);
+
+const Route3 = createStackNavigator(
+  {
+    
+    Profile,
+    termOfUse : {
+      screen: termOfUse
+    },
+    privacyPolicy,
+    aboutUs,
+    },
+    {
+      headerMode: 'none',
+    initialRouteName: 'Profile',
   },
 );
 
@@ -97,11 +118,57 @@ const RouteTab = createBottomTabNavigator(
   },
 );
 
-const Router = createStackNavigator(
+const RouteTabUser = createBottomTabNavigator(
+  {
+    Belanja: {
+      screen: Shop,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="store" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Transaksi: {
+      screen: Transaction,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="receipt" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Bantuan: {
+      screen: Helps,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="help" size={24} color={tintColor} />
+        ),
+      },
+    },
+
+    Profil: {
+      screen: Profile,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="user" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+  },
+  {
+    initialRouteName: 'Profil',
+    tabBarOptions: {
+      activeTintColor: '#F15B5D',
+    },
+  },
+);
+
+const Router = createSwitchNavigator(
   {
     Route1,
     Route2,
+    Route3,
     RouteTab,
+    RouteTabUser
   },
   {
     headerMode: 'none',

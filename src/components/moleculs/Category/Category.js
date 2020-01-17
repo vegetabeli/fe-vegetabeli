@@ -14,7 +14,7 @@ class Category extends Component {
       <>
         <View style={styles.categoryTop}>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity >
               <Image source={logo1} style={styles.iconStyle} />
               <Text style={styles.textMid}>Sayuran</Text>
             </TouchableOpacity>
