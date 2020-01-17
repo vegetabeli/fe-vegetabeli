@@ -2,11 +2,137 @@ import React, {Component} from 'react'
 import {Text, View, TouchableOpacity, TextInput,Picker} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux';
+import { postRegister } from '../../../../../config/Redux/Actions/User/LoginRegister/postRegister';
+import {ToastAndroid} from 'react-native';
 
 class Register extends Component {
   state = {
-    role: ''
+    email: '',
+    password: '',
+    role: 'buyer',
+    borderBottomColorEmail:'gray',
+    borderBottomColorPassword: 'gray',
+    invalidInfoEmail: false,
+    invalidInfoPassword: false,
+    passwordSecure: true,
+    showPassword: false,
+    hiddenPassword: false,
+    rulesPassword: false,
+    marginTop:0,
+    marginTest: 14
   }
+
+  onFocusEmail() {
+    this.setState({
+      borderBottomColorEmail: "#F15B5D",
+      invalidInfoEmail:false
+    })
+  }
+
+  onFocusPassword() {
+    this.setState({
+      borderBottomColorPassword: "#F15B5D",
+      invalidInfoPassword: false,
+      showPassword: true
+    })
+  }
+
+  onBlur() {
+    this.setState({
+      borderBottomColor:'gray',
+      showPassword: false,
+      hiddenPassword:false
+    })
+  }
+
+  rulesPassword = () => {
+    if(!this.state.rulesPassword) {
+      this.setState({
+        rulesPassword: !this.state.rulesPassword,
+        marginTop: 14
+      })
+    } else {
+      this.setState({
+        rulesPassword: !this.state.rulesPassword,
+        marginTop: 0
+      })
+    }
+  }
+
+  registerSubmit = async () => {
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
+      role: this.state.role
+    }
+    if (this.state.email == '' && this.state.password == '') {
+        this.setState({
+          invalidInfoPassword: true,
+          invalidInfoEmail: true,
+          borderBottomColorEmail: "#F15B5D",
+          borderBottomColorPassword: "#F15B5D",
+          showPassword: false,
+          hiddenPassword: false
+        })
+      } else if (this.state.password == '') {
+        this.setState({
+          invalidInfoPassword: true,
+          borderBottomColorEmail: "#F15B5D",
+          borderBottomColorPassword: "#F15B5D",
+          showPassword: false,
+          hiddenPassword: false
+        })
+      } else if ( this.state.email == '') {
+        this.setState({
+          invalidInfoEmail: true,
+          borderBottomColorEmail: "#F15B5D",
+          borderBottomColorPassword: "#F15B5D",
+          showPassword: false,
+          hiddenPassword: false
+        })
+      } else {
+          this.props.postRegister(data)
+          .then(result => {
+            console.log('reeqr',result)
+            if(result.value.data == "Your password is not valid ") {
+              ToastAndroid.showWithGravity(
+                'Your password is not valid',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER,
+              );
+            } else if (result.value.data == "email already exists") {
+              ToastAndroid.showWithGravity(
+                'Email with those role already exists',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER,
+              );
+            }
+            else {
+              this.setState({
+                email: '',
+                password: ''
+              })
+              this.props.navigation.navigate('Login');
+              ToastAndroid.showWithGravity(
+                'Successfully Registered',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER,
+              );
+            }
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+  }
+
+  componentDidMount() {
+    console.log('qwej', process.env.PORT)
+    console.log('qwej', process.env.HOST)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -30,21 +156,42 @@ class Register extends Component {
           <View style={styles.inputView1}>
             <View style={styles.inputView2}>
               <Text style={styles.inputText}>Email:</Text>
-              <TextInput style={styles.inputTextInput} placeholder="Masukkan Email"/>
+              <TextInput style={[styles.inputTextInput, { borderBottomColor: this.state.borderBottomColorEmail }]} placeholder="Masukkan Email" 
+              onFocus={() => this.onFocusEmail()} onBlur={() => this.onBlur()} 
+                onChangeText={(itemValue, itemIndex) =>
+                  this.setState({ email: itemValue, invalidInfoEmail: false })
+                } value={this.state.email}/>
               <Icon name="envelope" color="gray" size={21}
               style={styles.inputLogoEmail}/>
+              {this.state.invalidInfoEmail ? <Icon name="info-circle" color="rgb(241, 91, 93)" size={21}
+                style={styles.inputLogoEmailInvalid} /> : <></>}
+              
             </View>
           </View>
           <View style={styles.inputPassword}>
             <View style={styles.inputView2}>
               <Text style={styles.inputText}>Password:</Text>
-              <TextInput style={styles.inputTextInput} placeholder="Masukkan Password" />
+              <TextInput style={[styles.inputTextInput, {borderBottomColor: this.state.borderBottomColorPassword}]} placeholder="Masukkan Password" 
+              secureTextEntry={this.state.passwordSecure} onFocus={() => this.onFocusPassword()} onBlur={() => this.onBlur()}
+              onChangeText={(itemValue, itemIndex) =>
+                  this.setState({ password: itemValue, invalidInfoPassword: false })}
+              value={this.state.password}
+              />
               <Icon name="lock" color="gray" size={25}
-                style={styles.inputPasswordIcon} />
+                style={styles.inputPasswordIcon}
+              onPress={() => this.rulesPassword()} />
+              {this.state.invalidInfoPassword ? <Icon name="info-circle" color="rgb(241, 91, 93)" size={21}
+                style={styles.inputLogoEmailInvalid} /> : <></>}
+              {this.state.showPassword ? <Icon name="eye" color="gray" size={21}
+                style={styles.inputLogoEmailInvalid} onPress={() => this.setState({ passwordSecure: false, hiddenPassword: true})} /> : <></>}
+              {this.state.hiddenPassword ? <Icon name="eye-slash" color="gray" size={21}
+                style={styles.inputLogoEmailInvalid} onPress={() => this.setState({ passwordSecure: true, showPassword: true,hiddenPassword: false })} /> : <></>}
             </View>
+            {this.state.rulesPassword ? <View>
+              <Text style={{ color: 'gray', fontSize: 10 }}>Ketentuan: 1 Karakter non-Alfanumerik, 2 Huruf Kapital Kembar,3 Angka,2 Huruf Kecil Kembar</Text>
+            </View> : <></>}
           </View>
-          
-          <View style={styles.questionTextContainer}>
+          <View style={[styles.questionTextContainer, {marginTop:this.state.marginTop}]}>
             <View style={styles.questionTextView}>
               <Text>Sudah terdaftar? </Text>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
@@ -64,7 +211,7 @@ class Register extends Component {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.registerSubmit()}>
               <View style={styles.buttonRegister}>
                 <Text style={styles.buttonRegisterText}>Daftar</Text>
               </View>
@@ -87,4 +234,19 @@ class Register extends Component {
   }
 }
 
-export default Register
+const mapStateToProps = state => {
+  return {
+    errorMessage: state.postRegister.errorMessage
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+ return bindActionCreators(
+   {
+     postRegister,
+   },
+   dispatch,
+ );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

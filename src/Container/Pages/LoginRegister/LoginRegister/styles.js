@@ -64,6 +64,16 @@ export default StyleSheet.create({
     paddingLeft: 35,
   },
   inputLogoEmail: {position: 'absolute', top: 23, left: 5},
+  
+  //Input Email Invalid
+    inputTextInputInvalid: {
+      borderColor: 'white',
+      borderBottomColor: 'rgb(241, 91, 93)',
+      borderWidth: 1,
+      padding: 0,
+      paddingLeft: 35,
+    },
+    inputLogoEmailInvalid: { position: 'absolute', top: 23, right:1 },
 
   //Input Password
   inputPassword: {height: 50},
