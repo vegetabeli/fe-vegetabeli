@@ -5,6 +5,7 @@ import Transaction from './Transaction/Transaction'
 import HomeLogin from './LoginRegister/HomeLogin/index'
 import Login from './LoginRegister/LoginRegister/Login/index'
 import Register from './LoginRegister/LoginRegister/Register/index'
+import ListShop from './ListShop/ListShop'
 
 export {
     HomeLogin,
@@ -13,5 +14,6 @@ export {
     Landing,
     Transaction,
     Login,
-    Register
+    Register,
+    ListShop
 }

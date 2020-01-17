@@ -9,7 +9,8 @@ import {
   Transaction,
   HomeLogin,
   Login,
-  Register
+  Register,
+  ListShop
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 // import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
@@ -19,6 +20,17 @@ import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
 import {Icon} from 'react-native-elements';
 
+const Route1 = createStackNavigator(
+  {
+    ListShop : {
+      screen: ListShop,
+    }
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'ListShop',
+  },
+);
 
 const Route2 = createStackNavigator(
   {
@@ -85,8 +97,9 @@ const RouteTab = createBottomTabNavigator(
   },
 );
 
-const Router = createSwitchNavigator(
+const Router = createStackNavigator(
   {
+    Route1,
     Route2,
     RouteTab,
   },

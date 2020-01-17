@@ -83,16 +83,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF1ED',
     alignItems: 'center',
     height: 50,
-    width: 50,
+    width: 53,
     borderRadius: 10,
     elevation: 2.5,
-    marginHorizontal: '3.5%',
+    marginHorizontal: '3.2%',
+    marginTop:5
   },
   cardMid: {
     marginLeft: '7%',
   },
   textMid: {
-    fontSize: 11,
+    fontSize: 12,
     textAlign: 'center',
     color: '#777777',
   },
