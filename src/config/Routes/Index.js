@@ -17,6 +17,7 @@ import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
 import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
+import verifyOtp from '../../container/Pages/LoginRegister/LoginRegister/otp/'
 import {Icon} from 'react-native-elements';
 
 
@@ -33,7 +34,8 @@ const Route2 = createStackNavigator(
     },
     insertEmail,
     insertCode,
-    insertPassword
+    insertPassword,
+    verifyOtp
   },
   {
     headerMode: 'none',
