@@ -61,7 +61,7 @@ class insertPassword extends Component {
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
           );
-        // this.props.navigation.navigate('Login')
+        this.props.navigation.navigate('Login')
       }
     })
     

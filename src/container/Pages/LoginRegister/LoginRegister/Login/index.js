@@ -93,12 +93,12 @@ class Login extends Component {
             const {token, id_user} = data
             await AsyncStorage.setItem('@accessToken', JSON.stringify(token))
             await AsyncStorage.setItem('@id_user', JSON.stringify(id_user))
-            // this.props.navigation.navigate('Shop'); //Redirect Home
             ToastAndroid.showWithGravity(
               'Login Success!',
               ToastAndroid.SHORT,
               ToastAndroid.CENTER,
-            );
+              );
+              this.props.navigation.navigate('Belanja'); //Redirect Home
           }
         })
         .catch(err => {

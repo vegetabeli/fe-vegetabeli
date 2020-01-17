@@ -10,7 +10,13 @@ import {
   HomeLogin,
   Login,
   Register
-} from '../../Container/Pages/index';
+} from '../../container/Pages/index';
+import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
+// import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
+// import Login from '../../container/Pages/LoginRegister/LoginRegister/Login';
+import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
+import insertCode from '../../container/Pages/ForgotPassword/insertCode';
+import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
 import {Icon} from 'react-native-elements';
 
 
@@ -25,6 +31,9 @@ const Route2 = createStackNavigator(
     Register: {
       screen: Register,
     },
+    insertEmail,
+    insertCode,
+    insertPassword
   },
   {
     headerMode: 'none',

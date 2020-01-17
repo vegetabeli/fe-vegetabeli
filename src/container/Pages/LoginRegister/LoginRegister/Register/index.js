@@ -137,7 +137,7 @@ class Register extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.navbar}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeLogin')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginRegisterHome')}>
             <Icon name="chevron-left" size={25} color="#F15B5D" />
           </TouchableOpacity>
           <View style={styles.navbarTextView}>
@@ -217,7 +217,7 @@ class Register extends Component {
               </View>
             </TouchableOpacity>
             <View style={styles.buttonCancelContainer}>
-              <Text onPress={() => this.props.navigation.navigate('HomeLogin')} 
+              <Text onPress={() => this.props.navigation.navigate('LoginRegisterHome')} 
               style={styles.buttonCancelText}>Batalkan</Text>
             </View>
           </View>
