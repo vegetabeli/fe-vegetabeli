@@ -29,7 +29,7 @@ export default class Screenku extends React.Component {
         <Header style={styles.header}>
           <Left>
             <Button transparent>
-              <TouchableOpacity onPress={() => { this.props.navigation.navigate('Screenku') }}>
+              <TouchableOpacity onPress={() => { this.props.navigation.navigate('Helps') }}>
                 <Icon name='ios-arrow-back' style={styles.iconHeader} />
               </TouchableOpacity>
             </Button>
@@ -80,29 +80,35 @@ export default class Screenku extends React.Component {
         <Provider>
             <Portal>
               <Modal visible={this.state.visible} onDismiss={this.hideModal}>
-                <Card style={{marginTop:270,height:150, marginLeft:8,marginRight:8}}>
-                  <Text>di isi gambar wa</Text>
+                <Card style={{marginTop:100,height:100, marginLeft:8,marginRight:8}}>
+                  <Image style={{marginLeft:15,marginTop:18,height: 50,width:50}} source={require('./whatsapp2.png')} />
+                  <Text style={{marginLeft:14, fontSize: 12}}>whatsapp</Text>
                 </Card>
                 <Card style={{marginTop:5,height:45,marginLeft:8,marginRight:8}}>
+                <TouchableOpacity onPress={this.hideModal}>
                   <Text style={{marginLeft:140, marginTop:12, color:'#43CFA8'}}>Cancel</Text>
+                </TouchableOpacity>
                 </Card>
               </Modal>
             </Portal>
           </Provider>
-        <FAB
-            style={{
-              position: 'absolute',
-              right:0,
-              marginTop:550,
-              marginRight:16,
-              backgroundColor:'#43CFA8',
-              height:55,
-              width:55,
-            }}
-            medium
-            icon="whatsapp"
-            onPress={this.showModal}
-          />
+          <TouchableOpacity onPress={this.showModal}
+          style={{
+            borderWidth:1,
+            borderColor:'rgba(0,0,0,0.2)',
+            alignItems:'center',
+            justifyContent:'center',
+            width:60,
+            position: 'absolute',
+            height:60,
+            right:0,
+            marginTop:510,
+            marginRight:10,
+            backgroundColor:'#43CFA8',
+            borderRadius:100,
+        }}>
+          <Image style={{height: 40,width:40}} source={require('./whatsapp.png')} />
+        </TouchableOpacity>
       </View>
     );
   }

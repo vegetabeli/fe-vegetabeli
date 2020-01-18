@@ -55,7 +55,7 @@ export default class Bantuan extends React.Component {
             <View style={styles.line}/>
             <Text style={styles.parent}>Operasional</Text>
             <View style={styles.line}/>
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Payment') }}>
+            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Isi2') }}>
             <Text style={styles.child}>Pasar mana saja yang sementara bekerjasama dengan Tumbasin.id?</Text>
             </TouchableOpacity>
             <View style={styles.line}/>

@@ -24,7 +24,7 @@ export default class Screenku extends React.Component {
         <Header style={styles.header}>
           <Left>
             <Button transparent>
-              <TouchableOpacity onPress={() => { this.props.navigation.navigate('Screenku') }}>
+              <TouchableOpacity onPress={() => { this.props.navigation.navigate('Helps') }}>
                 <Icon name='ios-arrow-back' style={styles.iconHeader} />
               </TouchableOpacity>
             </Button>
@@ -75,7 +75,7 @@ export default class Screenku extends React.Component {
         <Provider>
             <Portal>
               <Modal visible={this.state.visible} onDismiss={this.hideModal}>
-                <Card style={{marginTop:320,height:100, marginLeft:8,marginRight:8}}>
+                <Card style={{marginTop:100,height:100, marginLeft:8,marginRight:8}}>
                   <Image style={{marginLeft:15,marginTop:18,height: 50,width:50}} source={require('./whatsapp2.png')} />
                   <Text style={{marginLeft:14, fontSize: 12}}>whatsapp</Text>
                 </Card>
@@ -98,7 +98,7 @@ export default class Screenku extends React.Component {
             position: 'absolute',
             height:60,
             right:0,
-            marginTop:545,
+            marginTop:510,
             marginRight:10,
             backgroundColor:'#43CFA8',
             borderRadius:100,
