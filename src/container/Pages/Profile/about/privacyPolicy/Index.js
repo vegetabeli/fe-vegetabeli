@@ -10,7 +10,7 @@ class privacyPolicy extends Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity>
-                        <Icon name= 'chevron-left' color='red' size={25}
+                        <Icon name= 'chevron-left' color='#FF5063' size={25}
                         onPress={() => this.props.navigation.navigate('Profile')}/>
                     </TouchableOpacity>
                     <Text style={styles.textHeader}>

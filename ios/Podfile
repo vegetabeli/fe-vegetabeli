@@ -46,7 +46,12 @@ target 'feVegetabeli' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+<<<<<<< HEAD
 >>>>>>> 771c5a78696c0cb7267c2d450b91a5a4ed5505fc
+=======
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+>>>>>>> 4372a5b789639429cada016566d4d177a15e4850
   target 'feVegetabeliTests' do
     inherit! :search_paths
     # Pods for testing

@@ -12,7 +12,7 @@ class detailTrans extends Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity>
-                        <Icon name= 'chevron-left' color='red' size={25}
+                        <Icon name= 'chevron-left' color='#FF5063' size={25}
                         onPress={() => this.props.navigation.navigate('listTrans')}/>
                     </TouchableOpacity>
                     <Text style={styles.textHeader}>
@@ -117,7 +117,7 @@ class detailTrans extends Component {
                     </View>
                     <View style={{height: '60%',  borderBottomWidth: 1, borderColor: '#EFEAEA', flexDirection: 'row'}}>
                         <View style={{paddingTop: 25, paddingLeft: 20}}>
-                            <Text style={{fontSize: 17}}>
+                            <Text style={{fontSize: 13, fontWeight: 'bold'}}>
                                 1x
                             </Text>
                         </View>
@@ -129,10 +129,64 @@ class detailTrans extends Component {
                                 <Text style={styles.priceItem}>Rp 6.000/pcs</Text>
                             </View>
                         </View>
-                        <View style={{paddingTop: 25, paddingLeft: 70}}>
-                            <Text style={{fontSize: 17}}>
+                        <View style={{paddingTop: 25, paddingLeft: 85}}>
+                            <Text style={{fontSize: 13, fontWeight: 'bold'}}>
                                 Rp 6.000
                             </Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={{flexDirection: "column", height: 150,  backgroundColor: 'white', elevation: 3, marginTop: 10,paddingHorizontal: 16}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', height: '65%', borderBottomWidth: 1, borderColor: '#EFEAEA'}}>
+                        <View>
+                            <Text style={{fontSize: 13, color: '#737375',paddingTop: 13}}>
+                                Subtotal
+                            </Text>
+                            <Text style={{fontSize: 13, color: '#737375', paddingTop: 7}}>
+                                Biaya Pengantaran
+                            </Text>
+                            <Text style={{fontSize: 13, color: '#737375', paddingTop: 7}}>
+                                Diskon
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 13}}>
+                                Rp 6.000
+                            </Text>
+                            <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 7}}>
+                                Rp 10.000
+                            </Text>
+                            <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 7}}>
+                                Rp 0
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', height: '35%', borderBottomWidth: 1, borderColor: '#EFEAEA'}}>
+                        <View>
+                            <Text style={{fontSize: 13, color: '#737375',paddingTop: 13}}>
+                                Total Pembayaran
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 13}}>
+                                Rp 16.000
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.cardDate}>
+                    <View style={{height: '50%', justifyContent: 'center'}}>
+                        <Text style={{fontSize: 13}}>
+                            Butuh Bantuan ?
+                        </Text>
+                    </View>
+                    <View style={{height: '50%'}}>
+                        <View style={{flexDirection: 'row', width: '100%', height: 35,}}>
+                            <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FF5063', width: '100%', borderRadius: 10}}>
+                                <Text style={{fontSize: 16, color: 'white', alignSelf: 'center'}}>
+                                    Hubungi CS Kami
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>

@@ -10,10 +10,17 @@ import {
   HomeLogin,
   Login,
   Register,
+  ListShop,
   Profile,
   aboutUs,
   privacyPolicy,
-  termOfUse
+  termOfUse,
+  ListCategory,
+  editProfile,
+  historyTrans,
+  listTrans,
+  detailTrans,
+  ShoppingCart,
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 // import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
@@ -21,50 +28,80 @@ import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
 import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
+import verifyOtp from '../../container/Pages/LoginRegister/LoginRegister/otp/';
 import {Icon} from 'react-native-elements';
 
-
-const Route2 = createStackNavigator(
+const HomeStack = createStackNavigator(
   {
-    HomeLogin: {
-      screen: HomeLogin,
-    },
-    Login : {
-      screen: Login,
-    },
-    Register: {
-      screen: Register,
-    },
+    ListShop,
+    Shop,
+    ListCategory,
+    ShoppingCart,
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'Shop', //Shop
+  },
+);
+
+const TransactionStack = createStackNavigator(
+  {
+    Transaction,
+    historyTrans,
+    listTrans,
+    detailTrans,
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'Transaction',
+  }
+)
+
+const HelpsStack = createStackNavigator(
+  {
+    Helps
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'Helps',
+  },
+);
+
+
+const ProfileGuestStack = createStackNavigator(
+  {
+    HomeLogin,
+    Login,
+    Register,
     insertEmail,
     insertCode,
     insertPassword,
-    },
-    {
-      headerMode: 'none',
+    verifyOtp,
+  },
+  {
+    headerMode: 'none',
     initialRouteName: 'HomeLogin',
   },
 );
 
-const Route3 = createStackNavigator(
+const ProfileUserStack = createStackNavigator(
   {
-    
     Profile,
-    termOfUse : {
-      screen: termOfUse
-    },
+    termOfUse,
     privacyPolicy,
     aboutUs,
-    },
-    {
-      headerMode: 'none',
+    editProfile,
+  },
+  {
+    headerMode: 'none',
     initialRouteName: 'Profile',
   },
 );
 
-const RouteTab = createBottomTabNavigator(
+const RouteGuest = createBottomTabNavigator(
   {
     Belanja: {
-      screen: Shop,
+      screen: HomeStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="store" size={24} color={tintColor} />
@@ -72,7 +109,7 @@ const RouteTab = createBottomTabNavigator(
       },
     },
     Transaksi: {
-      screen: Transaction,
+      screen: TransactionStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="receipt" size={24} color={tintColor} />
@@ -80,7 +117,7 @@ const RouteTab = createBottomTabNavigator(
       },
     },
     Bantuan: {
-      screen: Helps,
+      screen: HelpsStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="help" size={24} color={tintColor} />
@@ -89,7 +126,7 @@ const RouteTab = createBottomTabNavigator(
     },
 
     Profil: {
-      screen: HomeLogin,
+      screen: ProfileGuestStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="user" type="font-awesome" size={24} color={tintColor} />
@@ -105,10 +142,10 @@ const RouteTab = createBottomTabNavigator(
   },
 );
 
-const RouteTabUser = createBottomTabNavigator(
+const RouteUser = createBottomTabNavigator(
   {
     Belanja: {
-      screen: Shop,
+      screen: HomeStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="store" size={24} color={tintColor} />
@@ -116,7 +153,7 @@ const RouteTabUser = createBottomTabNavigator(
       },
     },
     Transaksi: {
-      screen: Transaction,
+      screen: TransactionStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="receipt" size={24} color={tintColor} />
@@ -124,7 +161,7 @@ const RouteTabUser = createBottomTabNavigator(
       },
     },
     Bantuan: {
-      screen: Helps,
+      screen: HelpsStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="help" size={24} color={tintColor} />
@@ -133,7 +170,7 @@ const RouteTabUser = createBottomTabNavigator(
     },
 
     Profil: {
-      screen: Profile,
+      screen: ProfileUserStack,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="user" type="font-awesome" size={24} color={tintColor} />
@@ -151,14 +188,13 @@ const RouteTabUser = createBottomTabNavigator(
 
 const Router = createSwitchNavigator(
   {
-    Route2,
-    Route3,
-    RouteTab,
-    RouteTabUser
+    RouteGuest,
+    RouteUser,
+    // HomeStack, //HAPUS
   },
   {
     headerMode: 'none',
-    initialRouteName: 'RouteTab',
+    initialRouteName: 'RouteGuest', //RouteGuest
   },
 );
 

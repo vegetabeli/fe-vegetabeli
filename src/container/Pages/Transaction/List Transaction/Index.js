@@ -16,6 +16,7 @@ class listTrans extends Component {
                     </TouchableOpacity>
                 </View>
                 <ScrollView>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('detailTrans')}>
                 {/* <View style={styles.containerIcon}>
                     <Icon name='shopping-basket' size={150}/>
                 </View>
@@ -27,7 +28,8 @@ class listTrans extends Component {
                         Cari produk kebutuhanmu hari ini, yuk belanja sekarang!
                     </Text>
                 </View> */}
-                <View style={{flexDirection: "column", height: 130, backgroundColor: 'white', elevation: 3, marginTop: 12}}>
+                <View style={{flexDirection: "column", height: 130, backgroundColor: 'white', elevation: 3, marginTop: 12}}
+                onPress={() => this.props.navigation.navigate('detailTrans')}>
                     <View style={{flexDirection: 'row', height: '70%', borderBottomWidth: 1, borderColor: '#EFEAEA'}}>
                         <View style={{padding: 19}}>
                             <Icon name='shopping-basket' size={20} color='red'/>
@@ -72,52 +74,7 @@ class listTrans extends Component {
                         </View>
                     </View>
                 </View>
-
-                <View style={{flexDirection: "column", height: 130, backgroundColor: 'white', elevation: 3, marginTop: 12}}>
-                    <View style={{flexDirection: 'row', height: '70%', borderBottomWidth: 1, borderColor: '#EFEAEA'}}>
-                        <View style={{padding: 19}}>
-                            <Icon name='shopping-basket' size={20} color='red'/>
-                        </View>
-                        <View style={{flexDirection: 'column', justifyContent: 'center', padding: 5}}>
-                            <Text style={{fontWeight: 'bold', fontSize: 15, paddingVertical: 3}}>
-                                Kode belanja - 27940
-                            </Text>
-                            <View style={{flexDirection: 'row'}}>
-                                <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                                    Alamat:
-                                </Text>
-                                <Text style={{paddingLeft: 5,fontSize: 15, color: '#737375'}}>
-                                    aasd
-                                </Text>
-                            </View>
-                            <View style={{flexDirection: 'row', paddingVertical: 3}}>
-                                <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                                    Tanggal:
-                                </Text>
-                                <Text style={{paddingLeft: 5,fontSize: 15, color: '#737375'}}>
-                                    14 January 2020, 15:22
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={{flexDirection: 'row', height: '30%', alignItems: 'center', marginHorizontal: 16}}>
-                        <View>
-                            <Text style={{fontSize: 14,}}>
-                                Total: Rp 16.000
-                            </Text>
-                        </View>
-                        <View style={{paddingLeft: 90}}>
-                            <Text style={{fontSize: 14, color: '#737375'}}>
-                                Status:
-                            </Text>
-                        </View>
-                        <View style={{padding: 5}}>
-                            <Text style={{fontSize: 14, color: '#31C026'}}>
-                                Dalam Proses
-                            </Text>
-                        </View>
-                    </View>
-                </View>
+                </TouchableOpacity>
 
                 </ScrollView>
                 
