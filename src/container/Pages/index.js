@@ -16,6 +16,7 @@ import historyTrans from './Transaction/History Transaction/Index';
 import listTrans from './Transaction/List Transaction/Index';
 import Vegetable from './ListCategory/Vegetables/Vegetable'
 import ListCategory from './ListCategory/ListCategory'
+import ShoppingCart from './ShoppingCart/Index'
 
 export {
     HomeLogin,
@@ -36,4 +37,5 @@ export {
     listTrans,
     Vegetable,
     ListCategory,
+    ShoppingCart,
 }
