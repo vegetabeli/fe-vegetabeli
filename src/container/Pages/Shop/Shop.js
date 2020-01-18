@@ -92,7 +92,7 @@ class Belanja extends Component {
           </View>
         </ScrollView>
         <View style={styles.floatingButton}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('ShoppingCart')}>
             <Icon
               name="shopping-cart"
               type="font-awesome"

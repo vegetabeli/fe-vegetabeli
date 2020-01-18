@@ -20,6 +20,7 @@ import {
   historyTrans,
   listTrans,
   detailTrans,
+  ShoppingCart,
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
@@ -32,11 +33,12 @@ const HomeStack = createStackNavigator(
   {
     ListShop,
     Shop,
-    ListCategory
+    ListCategory,
+    ShoppingCart,
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Shop',
+    initialRouteName: 'Shop', //Shop
   },
 );
 
@@ -185,11 +187,12 @@ const RouteUser = createBottomTabNavigator(
 const Router = createSwitchNavigator(
   {
     RouteGuest,
-    RouteUser
+    RouteUser,
+    // HomeStack, //HAPUS
   },
   {
     headerMode: 'none',
-    initialRouteName: 'RouteGuest',
+    initialRouteName: 'RouteGuest', //RouteGuest
   },
 );
 
