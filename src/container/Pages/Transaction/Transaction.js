@@ -12,7 +12,8 @@ class Transaksi extends Component {
             <Text style={styles.navbarText}>Daftar Transaksi</Text>
           </View>
           <View style={styles.navbarIcon} >
-          <TouchableOpacity>
+          <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('historyTrans')}>
             <Icon name="history" type="font-awesome" size={22} color="#A1A1A1" />
           </TouchableOpacity>
           </View>

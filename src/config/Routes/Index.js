@@ -15,7 +15,11 @@ import {
   aboutUs,
   privacyPolicy,
   termOfUse,
-  ListCategory
+  ListCategory,
+  editProfile,
+  historyTrans,
+  listTrans,
+  detailTrans,
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 // import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
@@ -41,6 +45,9 @@ const HomeStack = createStackNavigator(
 const TransactionStack = createStackNavigator(
   {
     Transaction,
+    historyTrans,
+    listTrans,
+    detailTrans,
   },
   {
     headerMode: 'none',
@@ -81,6 +88,7 @@ const ProfileUserStack = createStackNavigator(
     termOfUse,
     privacyPolicy,
     aboutUs,
+    editProfile,
   },
   {
     headerMode: 'none',

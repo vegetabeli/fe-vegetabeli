@@ -10,6 +10,10 @@ import Profile from './Profile/profileHome/Index';
 import aboutUs from './Profile/about/aboutUs/Index';
 import privacyPolicy from './Profile/about/privacyPolicy/Index';
 import termOfUse from './Profile/about/termOfUse/Index';
+import editProfile from './Profile/EditProfile/index';
+import detailTrans from './Transaction/Detail Transaction/index';
+import historyTrans from './Transaction/History Transaction/Index';
+import listTrans from './Transaction/List Transaction/Index';
 import Vegetable from './ListCategory/Vegetables/Vegetable'
 import ListCategory from './ListCategory/ListCategory'
 
@@ -26,6 +30,10 @@ export {
     aboutUs,
     privacyPolicy,
     termOfUse,
+    editProfile,
+    detailTrans,
+    historyTrans,
+    listTrans,
     Vegetable,
-    ListCategory
+    ListCategory,
 }

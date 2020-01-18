@@ -9,7 +9,7 @@ class historyTrans extends Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity>
-                        <Icon name= 'chevron-left' color='red' size={25}
+                        <Icon name= 'chevron-left' color='#FF5063' size={25}
                         onPress={() => this.props.navigation.navigate('listTrans')}/>
                     </TouchableOpacity>
                     <Text style={styles.textHeader}>
@@ -17,6 +17,7 @@ class historyTrans extends Component {
                     </Text>
                 </View>
                 <ScrollView>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('detailTrans')}>
                 <View style={{flexDirection: "column", height: 130, backgroundColor: 'white', elevation: 3, marginTop: 12}}>
                     <View style={{flexDirection: 'row', height: '70%', borderBottomWidth: 1, borderColor: '#EFEAEA'}}>
                         <View style={{padding: 19}}>
@@ -62,6 +63,7 @@ class historyTrans extends Component {
                         </View>
                     </View>
                 </View>
+                </TouchableOpacity>
                 </ScrollView>
             </View>
         )
