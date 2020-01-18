@@ -11,6 +11,7 @@ class Profile extends Component {
           <Text style={styles.textHeader}>Profil</Text>
         </View>
         <ScrollView>
+          <TouchableOpacity  onPress={() => this.props.navigation.navigate('editProfile')}>
           <View style={styles.headerUser}>
             <View style={styles.headIcon}>
               <Icon name="user-circle" size={55} color="#EE4F6F" />
@@ -20,6 +21,7 @@ class Profile extends Component {
               <Text style={styles.emailUser}>misakiyoung6310@gmail.com</Text>
             </View>
           </View>
+          </TouchableOpacity>
           <View style={styles.containerFollowUs}>
             <View>
               <Text style={styles.textFollow}>Ikuti kami</Text>

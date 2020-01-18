@@ -8,7 +8,7 @@ export const passwordInsert = (data,id_user) => {
   return {
     type: 'PASSWORD_INSERT',
     payload: axios.patch(
-      `http://${HOST}:5000/user/resetpassword/${id_user}`,
+      `http://192.168.6.169:5000/user/resetpassword/${id_user}`,
       data,
       {
         header: {

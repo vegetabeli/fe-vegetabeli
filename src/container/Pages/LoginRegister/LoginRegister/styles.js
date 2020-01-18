@@ -132,7 +132,7 @@ export default StyleSheet.create({
 
   //Text Condition
   conditionView: {
-    height: 160,
+    height: 125,
     width: 300,
     alignSelf: 'center',
     justifyContent: 'center',
