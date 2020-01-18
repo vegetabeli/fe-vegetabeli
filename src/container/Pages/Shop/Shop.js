@@ -12,11 +12,10 @@ import {Button, Icon, SearchBar} from 'react-native-elements';
 import driver from '../../../assets/image/bike.png';
 import Category from '../../../components/moleculs/Category/Category';
 import ProductBestSeller from '../../../components/moleculs/ProductBestSeller/ProductBestSeller';
-import { FloatingAction } from "react-native-floating-action";
 
 class Belanja extends Component {
   state = {
-    search: ''
+    search: '',
   };
 
   updateSearch = search => {
@@ -58,10 +57,12 @@ class Belanja extends Component {
               titleStyle={styles.titleBtn}
               containerStyle={styles.btnAdress}
               buttonStyle={styles.btnColor}
+              onPress={() => this.props.navigation.navigate('ListShop')}
             />
           </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.main}>
           <View style={styles.categoryBar}>
             <Text style={styles.fontCategory}>Telusuri Jenis Produk</Text>
             <Category />
@@ -82,8 +83,18 @@ class Belanja extends Component {
             </TouchableOpacity>
           </View>
           <ProductBestSeller />
+          </View>
         </ScrollView>
-        <FloatingAction color="skyblue"/>
+        <View style={styles.floatingButton}>
+          <TouchableOpacity>
+            <Icon
+              name="shopping-cart"
+              type="font-awesome"
+              color="white"
+              size={23}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -122,10 +133,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 2,
   },
+  main: {
+    backgroundColor: '#F9F9F9'
+  },
   categoryBar: {
     height: 180,
-    backgroundColor: '#F9F9F9',
+    // backgroundColor: '#F9F9F9',
     marginTop: 20,
+    flexWrap: 'wrap'
   },
   btnGanti: {
     position: 'absolute',
@@ -175,28 +190,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  categoryTop: {
-    flexDirection: 'row',
-    marginTop: 8,
-    marginHorizontal: '5%',
-  },
-  categoryBot: {
-    flexDirection: 'row',
-    marginTop: 4,
-    marginHorizontal: '5%',
-  },
-  card1: {
-    backgroundColor: 'white',
-    height: '55%',
-    width: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    elevation: 2.5,
-  },
-  cardMid: {
-    marginHorizontal: '7%',
-  },
   textCategory: {
     fontSize: 12,
     marginBottom: -12,
@@ -205,7 +198,7 @@ const styles = StyleSheet.create({
     width: '80%',
     aspectRatio: 2 / 1,
     backgroundColor: '#F15B5D',
-    marginVertical: 10,
+    marginVertical: 25,
     alignSelf: 'center',
     flexDirection: 'column',
     marginHorizontal: 20,
@@ -229,34 +222,6 @@ const styles = StyleSheet.create({
     color: '#F15B5D',
     fontSize: 13,
   },
-  listProduk: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: '2%',
-    marginBottom: '12%',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
-  },
-  cardStyle: {
-    height: 100,
-    width: 100,
-    borderRadius: 8,
-    elevation: 2,
-  },
-  produkStyle: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  produkStyle1: {
-    flexDirection: 'column',
-    position: 'absolute',
-    marginLeft: '35%',
-    marginTop: '5%',
-  },
-  produkStyle2: {
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-  },
   imgStyle: {
     height: 75,
     width: 75,
@@ -277,5 +242,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginRight: 10,
+  },
+  floatingButton: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    borderRadius: 40,
+    backgroundColor: '#87CAFE',
+    right: 0,
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 20,
+    marginBottom: 12,
+    elevation: 5,
   },
 });

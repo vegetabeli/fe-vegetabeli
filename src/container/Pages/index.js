@@ -5,6 +5,7 @@ import Transaction from './Transaction/Transaction'
 import HomeLogin from './LoginRegister/HomeLogin/index'
 import Login from './LoginRegister/LoginRegister/Login/index'
 import Register from './LoginRegister/LoginRegister/Register/index'
+import ListShop from './ListShop/ListShop'
 import Profile from './Profile/profileHome/Index';
 import aboutUs from './Profile/about/aboutUs/Index';
 import privacyPolicy from './Profile/about/privacyPolicy/Index';
@@ -13,6 +14,8 @@ import editProfile from './Profile/EditProfile/index';
 import detailTrans from './Transaction/Detail Transaction/index';
 import historyTrans from './Transaction/History Transaction/Index';
 import listTrans from './Transaction/List Transaction/Index';
+import Vegetable from './ListCategory/Vegetables/Vegetable'
+import ListCategory from './ListCategory/ListCategory'
 
 export {
     HomeLogin,
@@ -22,6 +25,7 @@ export {
     Transaction,
     Login,
     Register,
+    ListShop,
     Profile,
     aboutUs,
     privacyPolicy,
@@ -30,4 +34,6 @@ export {
     detailTrans,
     historyTrans,
     listTrans,
+    Vegetable,
+    ListCategory,
 }
