@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { ToastAndroid } from 'react-native';
 import {getLogin} from '../../../../../config/Redux/Actions/User/LoginRegister/getLogin'
+import {getLoginPhone} from '../../../../../config/Redux/Actions/User/LoginRegister/getLoginPhone'
 import AsyncStorage from '@react-native-community/async-storage';
 class Login extends Component {
   state = {
@@ -18,7 +19,9 @@ class Login extends Component {
     invalidInfoPassword: false,
     passwordSecure: true,
     showPassword: false,
-    hiddenPassword: false
+    hiddenPassword: false,
+    loginPhone: false,
+    phone: ''
   }
 
   onFocusEmail() {
@@ -41,6 +44,12 @@ class Login extends Component {
       borderBottomColor: 'gray',
       showPassword: false,
       hiddenPassword: false
+    })
+  }
+
+  inputPhone = async () => {
+    this.setState({
+      loginPhone: !this.state.loginPhone
     })
   }
 
@@ -90,9 +99,10 @@ class Login extends Component {
           else {
             console.log('gokz',this.props.loginData)
             const data = this.props.loginData.data.data
-            const {token, id_user} = data
+            const {token, id_user, role} = data
             await AsyncStorage.setItem('@accessToken', JSON.stringify(token))
             await AsyncStorage.setItem('@id_user', JSON.stringify(id_user))
+            await AsyncStorage.setItem('@role', JSON.stringify(role))
             ToastAndroid.showWithGravity(
               'Login Success!',
               ToastAndroid.SHORT,
@@ -104,6 +114,78 @@ class Login extends Component {
         .catch(err => {
           console.log(err)
         })
+    }
+  }
+
+  handleLoginPhone = async () => {
+    if (this.state.phone == '' && this.state.password == '') {
+      this.setState({
+        invalidInfoPassword: true,
+        invalidInfoEmail: true,
+        borderBottomColorEmail: "#F15B5D",
+        borderBottomColorPassword: "#F15B5D",
+        showPassword: false,
+        hiddenPassword: false
+      })
+    } else if (this.state.password == '') {
+      this.setState({
+        invalidInfoPassword: true,
+        borderBottomColorEmail: "#F15B5D",
+        borderBottomColorPassword: "#F15B5D",
+        showPassword: false,
+        hiddenPassword: false
+      })
+    } else if (this.state.phone == '') {
+      this.setState({
+        invalidInfoEmail: true,
+        borderBottomColorEmail: "#F15B5D",
+        borderBottomColorPassword: "#F15B5D",
+        showPassword: false,
+        hiddenPassword: false
+      })
+    } else {
+      this.props.getLoginPhone(this.state.phone, this.state.password, this.state.role)
+        .then(async result => {
+          console.log('phone slur', result)
+          if (result.value.data == "Phone Number not found") {
+            ToastAndroid.showWithGravity(
+              'Phone Number not found',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+          } else if (result.value.data == "Password incorrect!") {
+            ToastAndroid.showWithGravity(
+              'Password incorrect!',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+          }
+          else {
+            console.log('gokz phone', this.props.loginPhoneData)
+            const data = this.props.loginPhoneData.data.data
+            const { token, id_user, role } = data
+            await AsyncStorage.setItem('@accessToken', JSON.stringify(token))
+            await AsyncStorage.setItem('@id_user', JSON.stringify(id_user))
+            await AsyncStorage.setItem('@role', JSON.stringify(role))
+            ToastAndroid.showWithGravity(
+              'Login Success!',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+            this.props.navigation.navigate('verifyOtp'); //Redirect Home
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
+
+  handleSubmit = async () => {
+    if(this.state.loginPhone) {
+      this.handleLoginPhone()
+    } else {
+      this.loginSubmit()
     }
   }
 
@@ -120,7 +202,9 @@ class Login extends Component {
             <Icon name="chevron-left" size={25} color="#F15B5D" />
           </TouchableOpacity>
           <View style={styles.navbarTextView}>
-            <Text style={styles.navbarText}>Masuk Lewat Email</Text>
+            {/* HPqlkwjekqwjek */}
+            {this.state.loginPhone ? <Text style={styles.navbarText}>Masuk Lewat Nomor</Text> :
+              <Text style={styles.navbarText}>Masuk Lewat Email</Text>}
           </View>
         </View>
         <View style={styles.homeIconContainer}>
@@ -128,18 +212,34 @@ class Login extends Component {
             <View style={styles.homeIcon}>
               <Icon style={styles.homeIconLogo} name="sign-in" size={40} color="white" />
             </View>
-            <Text style={styles.homeIconText}>Masuk Lewat Email</Text>
+            {this.state.loginPhone ? <Text style={styles.homeIconText}>Masuk Lewat Nomor</Text>
+              : <Text style={styles.homeIconText}>Masuk Lewat Email</Text>}
+            {/* HPsssasdasda */}
+            {this.state.loginPhone ? <TouchableOpacity
+              onPress={() => this.inputPhone()}>
+              <Text style={{ textAlign: 'center', color: 'gray', paddingRight: 2 }}>Masuk Lewat Email</Text>
+            </TouchableOpacity> : <TouchableOpacity
+              onPress={() => this.inputPhone()}>
+                <Text style={{ textAlign: 'center', color: 'gray', paddingRight: 2 }}>Masuk Lewat Nomor</Text>
+              </TouchableOpacity>}
           </View>
         </View>
         <View style={styles.inputContainer}>
           <View style={styles.inputView1}>
             <View style={styles.inputView2}>
-              <Text style={styles.inputText}>Email:</Text>
-              <TextInput style={[styles.inputTextInput, { borderBottomColor: this.state.borderBottomColorEmail }]}
+              {this.state.loginPhone ? <Text style={styles.inputText}>Nomor:</Text>
+                : <Text style={styles.inputText}>Email:</Text>}
+              {this.state.loginPhone ? <TextInput style={[styles.inputTextInput, { borderBottomColor: this.state.borderBottomColorEmail }]}
+                placeholder="Masukkan Nomor" onFocus={() => this.onFocusEmail()} onBlur={() => this.onBlur()}
+                onChangeText={(itemValue, itemIndex) =>
+                  this.setState({ phone: itemValue, invalidInfoEmail: false })
+                }
+              /> : <TextInput style={[styles.inputTextInput, { borderBottomColor: this.state.borderBottomColorEmail }]}
                 placeholder="Masukkan Email" onFocus={() => this.onFocusEmail()} onBlur={() => this.onBlur()}
                 onChangeText={(itemValue, itemIndex) =>
                   this.setState({ email: itemValue, invalidInfoEmail: false })
-                }/>
+                }
+                />}
               <Icon name="envelope" color="gray" size={21}
                 style={styles.inputLogoEmail} />
               {this.state.invalidInfoEmail ? <Icon name="info-circle" color="rgb(241, 91, 93)" size={21}
@@ -193,7 +293,7 @@ class Login extends Component {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => this.loginSubmit()}>
+            <TouchableOpacity onPress={() => this.handleSubmit()}>
               <View style={styles.buttonRegister}>
                 <Text style={styles.buttonRegisterText}>Masuk</Text>
               </View>
@@ -218,7 +318,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    loginData: state.getLogin.loginData
+    loginData: state.getLogin.loginData,
+    loginPhoneData: state.getLoginPhone.loginPhoneData
   }
 }
 
@@ -226,6 +327,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       getLogin,
+      getLoginPhone
     },
     dispatch,
   );

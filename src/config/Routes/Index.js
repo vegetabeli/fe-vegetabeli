@@ -13,7 +13,7 @@ import {
   Profile,
   aboutUs,
   privacyPolicy,
-  termOfUse
+  termOfUse,
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 // import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
@@ -21,15 +21,15 @@ import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
 import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
+import verifyOtp from '../../container/Pages/LoginRegister/LoginRegister/otp/';
 import {Icon} from 'react-native-elements';
-
 
 const Route2 = createStackNavigator(
   {
     HomeLogin: {
       screen: HomeLogin,
     },
-    Login : {
+    Login: {
       screen: Login,
     },
     Register: {
@@ -38,25 +38,25 @@ const Route2 = createStackNavigator(
     insertEmail,
     insertCode,
     insertPassword,
-    },
-    {
-      headerMode: 'none',
+    verifyOtp,
+  },
+  {
+    headerMode: 'none',
     initialRouteName: 'HomeLogin',
   },
 );
 
 const Route3 = createStackNavigator(
   {
-    
     Profile,
-    termOfUse : {
-      screen: termOfUse
+    termOfUse: {
+      screen: termOfUse,
     },
     privacyPolicy,
     aboutUs,
-    },
-    {
-      headerMode: 'none',
+  },
+  {
+    headerMode: 'none',
     initialRouteName: 'Profile',
   },
 );
@@ -154,7 +154,7 @@ const Router = createSwitchNavigator(
     Route2,
     Route3,
     RouteTab,
-    RouteTabUser
+    RouteTabUser,
   },
   {
     headerMode: 'none',

@@ -2,11 +2,11 @@ import axios from 'axios';
 const PORT = process.env.PORT
 const HOST = process.env.HOST
 
-const URL_STRING = `http://192.168.6.169:5000/user/verifyforgot`;
+const URL_STRING = `http://192.168.6.169:5000/user/verifyotp`;
 
-export const codeInsert = (data) => {
+export const verifyOtp = (data) => {
   return {
-    type: 'CODE_INSERT',
+    type: 'VERIFY_OTP',
     payload: axios.post(
       URL_STRING,
       data,
