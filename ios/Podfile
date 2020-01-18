@@ -34,6 +34,19 @@ target 'feVegetabeli' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+<<<<<<< HEAD
+=======
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
+
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
+  pod 'RNCMaskedView', :path => '../node_modules/@react-native-community/masked-view'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+>>>>>>> 771c5a78696c0cb7267c2d450b91a5a4ed5505fc
   target 'feVegetabeliTests' do
     inherit! :search_paths
     # Pods for testing
