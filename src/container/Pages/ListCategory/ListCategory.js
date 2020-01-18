@@ -27,13 +27,14 @@ class ListCategory extends Component {
 
   render() {
     const {search} = this.state;
+  
 
     return (
       <View style={styles.container}>
         <View style={styles.navbar}>
           <View style={styles.btnBack}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('RouteTab')}>
+              onPress={() => this.props.navigation.navigate('Shop')}>
               <Icon name="chevron-left" size={40} color="#F15B5D" />
             </TouchableOpacity>
             <SearchBar
