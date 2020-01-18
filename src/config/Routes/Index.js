@@ -22,8 +22,6 @@ import {
   detailTrans,
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
-// import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
-// import Login from '../../container/Pages/LoginRegister/LoginRegister/Login';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
 import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';

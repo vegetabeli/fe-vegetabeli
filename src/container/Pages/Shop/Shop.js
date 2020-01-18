@@ -14,6 +14,7 @@ import Category from '../../../components/moleculs/Category/Category';
 import ProductBestSeller from '../../../components/moleculs/ProductBestSeller/ProductBestSeller';
 
 class Belanja extends Component {
+  conso
   state = {
     search: '',
   };
@@ -21,21 +22,26 @@ class Belanja extends Component {
   updateSearch = search => {
     this.setState({search});
   };
+  // onPress = () => {
+  //   console.log("PROPS", this.props)
+  //   this.props.navigation.navigate('ListCategory')
+  // }
 
   render() {
     const {search} = this.state;
+    console.log("PROPS", this.props)
 
     return (
       <View style={styles.parent}>
         <StatusBar barStyle="dark-content" backgroundColor="white" />
         <View style={styles.topBar}>
           <SearchBar
-            inputStyle={{fontSize: 14}}
+            inputStyle={{fontSize: 13.5, fontFamily: 'AirbnbCerealLight'}}
             containerStyle={styles.searchBar}
             onChangeText={this.updateSearch}
             value={search}
             platform="android"
-            placeholder="Cari sayur, bumbu dapur, lauk pauk"
+            placeholder="Cari sayur, bumbu dapur, lauk pauk . . "
           />
         </View>
         <View style={styles.addressBar}>
@@ -49,7 +55,7 @@ class Belanja extends Component {
               color="skyblue"
               containerStyle={styles.iconStyle}
             />
-            <Text style={styles.textSize}>BAKUL DAWET</Text>
+            <Text style={styles.textSize}>Bakul Dawet</Text>
           </View>
           <View style={styles.btnGanti}>
             <Button
@@ -63,35 +69,35 @@ class Belanja extends Component {
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.main}>
-          <View style={styles.categoryBar}>
-            <Text style={styles.fontCategory}>Telusuri Jenis Produk</Text>
-            <Category />
-          </View>
-          <View style={styles.img}>
-            <View style={styles.rounded}>
-              <Image source={driver} style={styles.imgStyle} />
+            <View style={styles.categoryBar}>
+              <Text style={styles.fontCategory}>Telusuri Jenis Produk</Text>
+              <Category onPres={() => this.props.navigation.navigate('ListCategory')}/>
             </View>
-            <View style={styles.textPromo}>
-              <Text style={styles.ok}>PROMO BERLIMPAH, SLUR!</Text>
-              <Text style={styles.ok}>SELAMAT BERBELANJA</Text>
+            <View style={styles.img}>
+              <View style={styles.rounded}>
+                <Image source={driver} style={styles.imgStyle} />
+              </View>
+              <View style={styles.textPromo}>
+                <Text style={styles.ok}>PROMO BERLIMPAH, SLUR!</Text>
+                <Text style={styles.ok}>SELAMAT BERBELANJA</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.bestSeller}>
-            <Text style={styles.fontBestSell}>Produk Bestseller</Text>
-            <TouchableOpacity>
-              <Text style={styles.fontSeeAll}>Lihat semua</Text>
-            </TouchableOpacity>
-          </View>
-          <ProductBestSeller />
+            <View style={styles.bestSeller}>
+              <Text style={styles.fontBestSell}>Produk Bestseller</Text>
+              <TouchableOpacity>
+                <Text style={styles.fontSeeAll}>Lihat semua</Text>
+              </TouchableOpacity>
+            </View>
+            <ProductBestSeller />
           </View>
         </ScrollView>
         <View style={styles.floatingButton}>
-          <TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
             <Icon
               name="shopping-cart"
               type="font-awesome"
               color="white"
-              size={23}
+              size={24}
             />
           </TouchableOpacity>
         </View>
@@ -134,13 +140,13 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   main: {
-    backgroundColor: '#F9F9F9'
+    backgroundColor: '#F9F9F9',
   },
   categoryBar: {
     height: 180,
     // backgroundColor: '#F9F9F9',
     marginTop: 20,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   btnGanti: {
     position: 'absolute',
@@ -149,14 +155,16 @@ const styles = StyleSheet.create({
   },
   textGray: {
     fontSize: 13,
-    color: '#919392',
+    fontFamily: 'AirbnbCerealLight',
+    fontWeight: '600',
+    color: '#828181',
     marginLeft: 10,
   },
   textSize: {
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontFamily: 'AirbnbCerealBold',
     marginLeft: 8,
-    marginTop: 12,
+    marginTop: 13,
   },
   textPos: {
     justifyContent: 'center',
@@ -177,7 +185,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   titleBtn: {
-    fontSize: 14,
+    fontSize: 16,
+    fontFamily: 'AirbnbCerealBook',
   },
   iconStyle: {
     marginLeft: 9,
@@ -188,10 +197,11 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: 16,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'AirbnbCerealBold',
   },
   textCategory: {
     fontSize: 12,
+    fontFamily: 'AirbnbCerealLight',
     marginBottom: -12,
   },
   img: {
@@ -208,19 +218,20 @@ const styles = StyleSheet.create({
   bestSeller: {
     width: '95%',
     aspectRatio: 10 / 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F9F9F9',
     marginHorizontal: '2%',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   fontBestSell: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'AirbnbCerealBold',
     marginLeft: '2%',
   },
   fontSeeAll: {
     color: '#F15B5D',
-    fontSize: 13,
+    fontSize: 12,
+    fontFamily: 'AirbnbCerealBook',
   },
   imgStyle: {
     height: 75,
@@ -239,7 +250,7 @@ const styles = StyleSheet.create({
   },
   ok: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'AirbnbCerealBold',
     color: 'white',
     marginRight: 10,
   },
@@ -248,7 +259,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 40,
-    backgroundColor: '#87CAFE',
+    backgroundColor: '#5D89AC',
     right: 0,
     bottom: 0,
     flexDirection: 'row',
@@ -257,5 +268,14 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 12,
     elevation: 5,
+  },
+  button: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#87CAFE',
+    width: 60,
+    height: 60,
+    borderRadius: 40,
   },
 });
