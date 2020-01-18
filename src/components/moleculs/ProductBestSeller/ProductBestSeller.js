@@ -9,13 +9,9 @@ class ProductBestSeller extends Component {
         <View style={styles.listProduk}>
           <View style={styles.produkStyle}>
             <View style={styles.cardStyle}></View>
-            <View>
-              <Text style={styles.fontBestSell}>
-                ndkjakjadbknkjfnjknsjknjfnknkn
-              </Text>
-              <Text style={styles.fontSeeAll}>
-                fknkfsnklnlkfkjfkjfkjakjfhkjfkjbkdabnwn
-              </Text>
+            <View style={styles.marginLeft}>
+              <Text style={styles.fontBestSell}>Tempe</Text>
+              <Text style={styles.fontSeeAll}>Rp. 5,000</Text>
             </View>
           </View>
           <View style={styles.produkStyle2}>
@@ -30,13 +26,9 @@ class ProductBestSeller extends Component {
         <View style={styles.listProduk}>
           <View style={styles.produkStyle}>
             <View style={styles.cardStyle}></View>
-            <View>
-              <Text style={styles.fontBestSell}>
-                ndkjakjadbknkjfnjknsjknjfnknkn
-              </Text>
-              <Text style={styles.fontSeeAll}>
-                fknkfsnklnlkfkjfkjfkjakjfhkjfkjbkdabnwn
-              </Text>
+            <View style={styles.marginLeft}>
+              <Text style={styles.fontBestSell}>Tempe</Text>
+              <Text style={styles.fontSeeAll}>Rp. 5,000</Text>
             </View>
           </View>
           <View style={styles.produkStyle2}>
@@ -51,13 +43,9 @@ class ProductBestSeller extends Component {
         <View style={styles.listProduk}>
           <View style={styles.produkStyle}>
             <View style={styles.cardStyle}></View>
-            <View>
-              <Text style={styles.fontBestSell}>
-                ndkjakjadbknkjfnjknsjknjfnknkn
-              </Text>
-              <Text style={styles.fontSeeAll}>
-                fknkfsnklnlkfkjfkjfkjakjfhkjfkjbkdabnwn
-              </Text>
+            <View style={styles.marginLeft}>
+              <Text style={styles.fontBestSell}>Tempe</Text>
+              <Text style={styles.fontSeeAll}>Rp. 5,000</Text>
             </View>
           </View>
           <View style={styles.produkStyle2}>
@@ -72,13 +60,9 @@ class ProductBestSeller extends Component {
         <View style={styles.listProduk}>
           <View style={styles.produkStyle}>
             <View style={styles.cardStyle}></View>
-            <View>
-              <Text style={styles.fontBestSell}>
-                ndkjakjadbknkjfnjknsjknjfnknkn
-              </Text>
-              <Text style={styles.fontSeeAll}>
-                fknkfsnklnlkfkjfkjfkjakjfhkjfkjbkdabnwn
-              </Text>
+            <View style={styles.marginLeft}>
+              <Text style={styles.fontBestSell}>Tempe</Text>
+              <Text style={styles.fontSeeAll}>Rp. 5,000</Text>
             </View>
           </View>
           <View style={styles.produkStyle2}>
@@ -114,13 +98,14 @@ const styles = StyleSheet.create({
   },
   fontBestSell: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'AirbnbCerealBold',
     marginLeft: '5%',
   },
   fontSeeAll: {
     color: '#F15B5D',
     fontSize: 13,
     marginLeft: '5%',
+    fontFamily: 'AirbnbCerealLight',
   },
   listProduk: {
     flexDirection: 'column',
@@ -139,8 +124,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginLeft: '2%',
     marginBottom: 10,
-
-
   },
   produkStyle: {
     flexDirection: 'row',
@@ -156,5 +139,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'flex-end',
     marginLeft: '75%',
+  },
+  marginLeft: {
+    marginLeft: 10,
   },
 });

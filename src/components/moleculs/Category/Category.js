@@ -9,36 +9,44 @@ import logo2 from '../../../assets/icon/potato-red.png';
 import logo4 from '../../../assets/icon/shrimp-red.png';
 
 class Category extends Component {
+ 
+
+  // onPress = (onPress) => {
+  //   console.log("PRESS", onPress
+  // )
+  //   this.props.navigation.navigate('ListCategory')
+  // }
   render() {
+    console.log("LOG", this.props)
     return (
       <>
         <View style={styles.categoryTop}>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPres}>
               <Image source={logo1} style={styles.iconStyle}  />
               <Text style={styles.textMid}>Sayuran</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPres}>
               <Image source={logo2} style={styles.iconStyle} />
               <Text style={styles.textMid}>Lauk Pauk</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPres}>
               <Image source={logo3} style={styles.iconStyle} />
               <Text style={styles.textMid}>Bumbu</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPres}>
               <Image source={logo4} style={styles.iconStyle} />
               <Text style={styles.textMid}>Seafood</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPres}>
               <Image source={logo5} style={styles.iconStyle} />
               <Text style={styles.textMid}>Sembako</Text>
             </TouchableOpacity>
@@ -46,13 +54,13 @@ class Category extends Component {
         </View>
         <View style={styles.categoryBot}>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPres}>
               <Image source={logo6} style={styles.iconStyle} />
               <Text style={styles.textMid}>Jajanan</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.card1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPres}>
               <Image source={logo7} style={styles.iconStyle} />
               <Text style={styles.textMid}>Buah</Text>
             </TouchableOpacity>
@@ -93,8 +101,10 @@ const styles = StyleSheet.create({
     marginLeft: '7%',
   },
   textMid: {
-    fontSize: 12,
+    fontSize: 10.5,
+    fontFamily: 'AirbnbCerealLight',
+    fontWeight: '700',
     textAlign: 'center',
-    color: '#777777',
+    color: '#A0A0A0',
   },
 });
