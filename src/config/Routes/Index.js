@@ -15,7 +15,10 @@ import {
   aboutUs,
   privacyPolicy,
   termOfUse,
+<<<<<<< HEAD
   ListCategory
+=======
+>>>>>>> 207e6690c3d9e4c599db91e1591de1169f320ee4
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 // import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
@@ -23,8 +26,10 @@ import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
 import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
+import verifyOtp from '../../container/Pages/LoginRegister/LoginRegister/otp/';
 import {Icon} from 'react-native-elements';
 
+<<<<<<< HEAD
 const HomeStack = createStackNavigator(
   {
     ListShop,
@@ -63,26 +68,45 @@ const ProfileGuestStack = createStackNavigator(
     HomeLogin,
     Login,
     Register,
+=======
+const Route2 = createStackNavigator(
+  {
+    HomeLogin: {
+      screen: HomeLogin,
+    },
+    Login: {
+      screen: Login,
+    },
+    Register: {
+      screen: Register,
+    },
+>>>>>>> 207e6690c3d9e4c599db91e1591de1169f320ee4
     insertEmail,
     insertCode,
     insertPassword,
-    },
-    {
-      headerMode: 'none',
+    verifyOtp,
+  },
+  {
+    headerMode: 'none',
     initialRouteName: 'HomeLogin',
   },
 );
 
 const ProfileUserStack = createStackNavigator(
   {
-    
     Profile,
+<<<<<<< HEAD
     termOfUse,
+=======
+    termOfUse: {
+      screen: termOfUse,
+    },
+>>>>>>> 207e6690c3d9e4c599db91e1591de1169f320ee4
     privacyPolicy,
     aboutUs,
-    },
-    {
-      headerMode: 'none',
+  },
+  {
+    headerMode: 'none',
     initialRouteName: 'Profile',
   },
 );
@@ -177,8 +201,15 @@ const RouteUser = createBottomTabNavigator(
 
 const Router = createSwitchNavigator(
   {
+<<<<<<< HEAD
     RouteGuest,
     RouteUser
+=======
+    Route2,
+    Route3,
+    RouteTab,
+    RouteTabUser,
+>>>>>>> 207e6690c3d9e4c599db91e1591de1169f320ee4
   },
   {
     headerMode: 'none',
