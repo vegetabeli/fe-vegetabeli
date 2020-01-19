@@ -7,7 +7,7 @@ const HOST = process.env.HOST
 export const getProductMarket = (token, id_market) => {
   return {
     type: 'GET_PRODUCT_MARKET',
-    payload: axios.get(`http://192.168.6.169:5000/product/market/${id_market}`, {
+    payload: axios.get(`http://18.208.177.116:5000/product/market/${id_market}`, {
       headers: {
         Authorization: `Bearer ${JSON.parse(
           token

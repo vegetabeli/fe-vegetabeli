@@ -34,6 +34,7 @@ import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
 import verifyOtp from '../../container/Pages/LoginRegister/LoginRegister/otp/';
 import {Icon} from 'react-native-elements';
+import iPaySuccess from '../../container/Pages/iPaySuccess';
 
 const HomeStack = createStackNavigator(
   {
@@ -43,6 +44,7 @@ const HomeStack = createStackNavigator(
     PaymentSucces,
     ListCategory,
     ShoppingCart,
+    iPaySuccess
   },
   {
     headerMode: 'none',

@@ -9,6 +9,11 @@ import getLoginPhone from '../Reducers/User/LoginRegister/getLoginPhone'
 import getAllMarket from '../Reducers/Choose Market/getAllMarket'
 import getMarket from '../Reducers/Shop/getMarket'
 import getProductMarket from '../Reducers/Shop/getProductMarket'
+import addProductTaken from '../Reducers/Product Taken/addProductTaken'
+import addCart from '../Reducers/Cart/addCart'
+import postSession from '../Reducers/iPaymu/postSession'
+import getCartByIdUser from '../Reducers/Transaction/getCartByIdUser'
+import getCartByIdCart from '../Reducers/Transaction/getCartByIdCart'
 
 const reducers = combineReducers({
   postRegister,
@@ -19,7 +24,12 @@ const reducers = combineReducers({
   getLoginPhone,
   getAllMarket,
   getMarket,
-  getProductMarket
+  getProductMarket,
+  addProductTaken,
+  addCart,
+  postSession,
+  getCartByIdUser,
+  getCartByIdCart
 })
 
 export default reducers

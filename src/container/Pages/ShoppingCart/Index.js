@@ -18,7 +18,9 @@ class ShoppingCart extends Component {
     product: [],
     market: [],
     totalPrices: 0,
-    totalProduct: 0
+    totalProduct: 0,
+    id_product: [],
+    price: []
   };
 
   handlePlus = async (name) => {
@@ -55,6 +57,35 @@ class ShoppingCart extends Component {
         return this.setState({totalProduct: product})
     }
 
+    paymentGateway = async () => {
+      this.props.navigation.push('Payment', {
+        productOrder: this.state.product,
+        cart: this.state.cart,
+        totalPrice: this.state.totalPrices,
+        market: this.state.market,
+        totalProduct: this.state.totalProduct,
+        quantity: Object.values(this.state.cart),
+        id_product: this.state.id_product,
+        price: this.state.price
+      })
+    }
+
+    id_produx = (x) => {
+      let z = []
+      for (let i = 0; i < x.length; i++) {
+        z.push(Object.values(x[i])[0])
+      }
+      return z
+    }
+
+  price = (x) => {
+    let z = []
+    for (let i = 0; i < x.length; i++) {
+      z.push(Object.values(x[i])[3])
+    }
+    return z
+  }
+
   async componentDidMount() {
     await this.setState({
       cart: await this.props.navigation.getParam('cart'),
@@ -79,16 +110,31 @@ class ShoppingCart extends Component {
             return x
         }
     })
+    
     console.log('ss',productFilter)
     await this.setState({
       product: productFilter,
     });
+  
+    let id_prod = await this.id_produx(this.state.product)
+    await this.setState({
+      id_product: id_prod
+    })
+    console.log('id_produzxx', this.state.id_product)
+
+    let prices = await this.price(this.state.product)
+    await this.setState({
+      price: prices
+    })
+    console.log('priccceeeee', this.state.price)
+
     console.log('statee', this.state.product);
     console.log(this.state.totalPrice)
     await this.total(this.state.product, Object.values(this.state.cart))
     console.log('totalPrice', this.state.totalPrices)
     await this.totalProduct(Object.values(this.state.cart))
     console.log('totalProduct', this.state.totalProduct)
+    console.log('market', this.state.market)
   }
 
   render() {
@@ -309,7 +355,9 @@ class ShoppingCart extends Component {
                       backgroundColor: '#FF5063',
                       width: '100%',
                       borderRadius: 7,
-                    }}>
+                    }}
+                    onPress={() => this.paymentGateway()}
+                    >
                     <Text
                       style={{
                         fontSize: 20,

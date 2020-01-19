@@ -177,7 +177,7 @@ class Belanja extends Component {
             </View>
             <View style={styles.bestSeller}>
               <Text style={styles.fontBestSell}>Produk Bestseller</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('iPaySuccess')}>
                 <Text style={styles.fontSeeAll}>Lihat semua</Text>
               </TouchableOpacity>
             </View>
