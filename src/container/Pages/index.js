@@ -11,7 +11,7 @@ import aboutUs from './Profile/about/aboutUs/Index';
 import privacyPolicy from './Profile/about/privacyPolicy/Index';
 import termOfUse from './Profile/about/termOfUse/Index';
 
-import Isi from './Helps/Detail/Isi';
+import Isi1 from './Helps/Detail/Isi1';
 import Isi2 from './Helps/Detail/Isi2';
 import Isi3 from './Helps/Detail/Isi3';
 import Isi4 from './Helps/Detail/Isi4';
@@ -54,7 +54,7 @@ export {
     aboutUs,
     privacyPolicy,
     termOfUse,
-    Isi,
+    Isi1,
     Isi2,
     Isi3,
     Isi4,
