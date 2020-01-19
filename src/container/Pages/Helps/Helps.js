@@ -109,7 +109,7 @@ export default class Bantuan extends React.Component {
           <View >
             {listData.map((list, i) => {
               return (
-                <View>
+                <View key={list.id_help}>
                   {/* {i == 0 ? <Text style={styles.parent}>Tentang Kami</Text> : i == 1 ? <Text style={styles.parent}>Operasional</Text> : i == 3 ? <Text style={styles.parent}>Harga dan Transaksi</Text> : i == 5 ? <Text style={styles.parent}>Transaksi</Text> : i==2?<View style={styles.line} />:<Text/>} */}
                   {i == 0 ? <Text style={styles.parent}>Tentang Kami</Text> : i == 1 ? <View><View style={styles.line}/><Text style={styles.parent}>Operasional</Text></View> : i == 3 ? <View><View style={styles.line}/><Text style={styles.parent}>Harga dan Transaksi</Text></View>:i == 5 ? <View><View style={styles.line}/><Text style={styles.parent}>Transaksi</Text></View>:console.log('')}
                   <View style={styles.line} />
