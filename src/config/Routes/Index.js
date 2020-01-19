@@ -21,7 +21,7 @@ import {
   listTrans,
   detailTrans, 
   ShoppingCart,
-  Isi,
+  Isi1,
   Isi2,
   Isi3,
   Isi4,
@@ -65,7 +65,7 @@ const TransactionStack = createStackNavigator(
 
 const HelpsStack = createStackNavigator(
   {
-    Helps,Isi,Isi2,Isi3,Isi4,Isi5,Isi6,Isi7,Isi8,Isi9,Isi10,Isi11,Isi12,Isi13,Isi14,Isi15,Isi16,Isi17,Isi18,Isi19
+    Helps,Isi1,Isi2,Isi3,Isi4,Isi5,Isi6,Isi7,Isi8,Isi9,Isi10,Isi11,Isi12,Isi13,Isi14,Isi15,Isi16,Isi17,Isi18,Isi19
   },
   {
     headerMode: 'none',
