@@ -76,7 +76,7 @@ export default class Bantuan extends React.Component {
       <View>
         <Header style={styles.header}>
           <Left>
-            <Button transparent onPress={() => {this.props.navigation.navigate('Belanja')}}>
+            <Button transparent onPress={() => { this.props.navigation.navigate('Belanja') }}>
               <Icon name='ios-arrow-back' style={styles.iconHeader} />
             </Button>
           </Left>
@@ -105,13 +105,13 @@ export default class Bantuan extends React.Component {
             <Text style={styles.topText}>Hello..</Text>
             <Text style={styles.bottomText}>Anda Memerlukan Bantuan?</Text>
           </View>
-          
+
           <View >
             {listData.map((list, i) => {
               return (
                 <View key={list.id_help}>
                   {/* {i == 0 ? <Text style={styles.parent}>Tentang Kami</Text> : i == 1 ? <Text style={styles.parent}>Operasional</Text> : i == 3 ? <Text style={styles.parent}>Harga dan Transaksi</Text> : i == 5 ? <Text style={styles.parent}>Transaksi</Text> : i==2?<View style={styles.line} />:<Text/>} */}
-                  {i == 0 ? <Text style={styles.parent}>Tentang Kami</Text> : i == 1 ? <View><View style={styles.line}/><Text style={styles.parent}>Operasional</Text></View> : i == 3 ? <View><View style={styles.line}/><Text style={styles.parent}>Harga dan Transaksi</Text></View>:i == 5 ? <View><View style={styles.line}/><Text style={styles.parent}>Transaksi</Text></View>:console.log('')}
+                  {i == 0 ? <Text style={styles.parent}>Tentang Kami</Text> : i == 1 ? <View><View style={styles.line} /><Text style={styles.parent}>Operasional</Text></View> : i == 3 ? <View><View style={styles.line} /><Text style={styles.parent}>Harga dan Transaksi</Text></View> : i == 5 ? <View><View style={styles.line} /><Text style={styles.parent}>Transaksi</Text></View> : console.log('')}
                   <View style={styles.line} />
                   <View flexDirection="row" key={list.id_help}>
                     <TouchableOpacity style={styles.btn} onPress={() => {
@@ -123,7 +123,7 @@ export default class Bantuan extends React.Component {
                 </View>
               )
             })}
-            <View style={styles.line}/>
+            <View style={styles.line} />
             <Text style={styles.call}>
               <Text style={styles.call}>Masih</Text>
               <Text style={styles.callBold}> butuh bantuan </Text>
@@ -145,21 +145,6 @@ export default class Bantuan extends React.Component {
 
         </ScrollView>
 
-        <Provider>
-          <Portal>
-            <Modal containerStyle={{ justifyContent: 'flex-end' }} visible={this.state.visible} onDismiss={this.hideModal}>
-              <Card style={{ marginTop: 320, bottom: 0, height: 100, marginLeft: 8, marginRight: 8 }}>
-                <Image style={{ marginLeft: 15, marginTop: 18, height: 50, width: 50 }} source={require('./whatsapp2.png')} />
-                <Text style={{ marginLeft: 14, fontSize: 12 }}>whatsapp</Text>
-              </Card>
-              <Card style={{ marginTop: 5, height: 45, marginLeft: 8, marginRight: 8 }}>
-                <TouchableOpacity onPress={this.hideModal}>
-                  <Text style={{ marginLeft: 140, marginTop: 12, color: '#43CFA8' }}>Cancel</Text>
-                </TouchableOpacity>
-              </Card>
-            </Modal>
-          </Portal>
-        </Provider>
 
         <TouchableOpacity onPress={this.showModal}
           style={{
@@ -179,6 +164,23 @@ export default class Bantuan extends React.Component {
           <Image style={{ height: 40, width: 40 }} source={require('./whatsapp.png')} />
         </TouchableOpacity>
 
+
+
+        <Provider>
+          <Portal>
+            <Modal containerStyle={{ justifyContent: 'flex-end' }} visible={this.state.visible} onDismiss={this.hideModal}>
+              <Card style={{ marginTop: 300, bottom: 0, height: 100, marginLeft: 8, marginRight: 8 }}>
+                <Image style={{ marginLeft: 15, marginTop: 18, height: 50, width: 50 }} source={require('./whatsapp2.png')} />
+                <Text style={{ marginLeft: 14, fontSize: 12 }}>whatsapp</Text>
+              </Card>
+              <Card style={{ marginTop: 5, height: 45, marginLeft: 8, marginRight: 8 }}>
+                <TouchableOpacity onPress={this.hideModal}>
+                  <Text style={{ marginLeft: 140, marginTop: 12, color: '#43CFA8' }}>Cancel</Text>
+                </TouchableOpacity>
+              </Card>
+            </Modal>
+          </Portal>
+        </Provider>
         {/* <FAB
             style={{
               position: 'absolute',

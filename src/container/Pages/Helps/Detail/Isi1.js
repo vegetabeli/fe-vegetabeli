@@ -44,12 +44,18 @@ export default class Screenku extends React.Component {
             {this.state.show ?
               <View style={styles.emot}>
                 <Text style={styles.ask}>Apakah penjelasan ini membantu?</Text>
-                <TouchableOpacity onPress={this.ShowHideComponent} disabled={this.state.isdisable}>
-                  <View style={styles.icon}>
-                    <Image style={styles.smile} source={require('./smile.png')} />
-                    <Image style={styles.sad} source={require('./sad.png')} />
-                  </View>
-                </TouchableOpacity>
+                <View flexDirection="row">
+                  <TouchableOpacity onPress={this.ShowHideComponent} disabled={this.state.isdisable}>
+                    <View style={styles.icon}>
+                      <Image style={styles.smile} source={require('./smile.png')} />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={this.ShowHideComponent} disabled={this.state.isdisable}>
+                    <View style={styles.icon}>
+                      <Image style={styles.sad} source={require('./sad.png')} />
+                    </View>
+                  </TouchableOpacity>
+                </View>
               </View> : <View >
                 <Item regular style={styles.itemThanks}>
                   <Text style={styles.itemText}>Terimakasih atas masukan kamu</Text>
@@ -67,26 +73,10 @@ export default class Screenku extends React.Component {
                   <Text style={styles.textFooter}>Layanan Pelanggan 24 Jam, Senin s/d Minggu, tidak termasuk Hari Libur Nasional</Text>
                 </Item>
               </View>
-            }
-            
+            }   
           </View>
-          
         </View>
-        <Provider>
-            <Portal>
-              <Modal visible={this.state.visible} onDismiss={this.hideModal}>
-                <Card style={{marginTop:100,height:100, marginLeft:8,marginRight:8}}>
-                  <Image style={{marginLeft:15,marginTop:18,height: 50,width:50}} source={require('./whatsapp2.png')} />
-                  <Text style={{marginLeft:14, fontSize: 12}}>whatsapp</Text>
-                </Card>
-                <Card style={{marginTop:5,height:45,marginLeft:8,marginRight:8}}>
-                <TouchableOpacity onPress={this.hideModal}>
-                  <Text style={{marginLeft:140, marginTop:12, color:'#43CFA8'}}>Cancel</Text>
-                </TouchableOpacity>
-                </Card>
-              </Modal>
-            </Portal>
-          </Provider>
+        
 
         <TouchableOpacity onPress={this.showModal}
           style={{
@@ -105,6 +95,22 @@ export default class Screenku extends React.Component {
         }}>
           <Image style={{height: 40,width:40}} source={require('./whatsapp.png')} />
         </TouchableOpacity>
+        <Provider>
+            <Portal>
+              <Modal visible={this.state.visible} onDismiss={this.hideModal}>
+                <Card style={{height:100, marginLeft:8,marginRight:8,marginTop:215}}>
+                  <Image style={{marginLeft:15,marginTop:18,height: 50,width:50}} source={require('./whatsapp2.png')} />
+                  <Text style={{marginLeft:14, fontSize: 12}}>whatsapp</Text>
+                </Card>
+                <Card style={{height:45,marginLeft:8,marginRight:8}}>
+                <TouchableOpacity onPress={this.hideModal}>
+                  <Text style={{marginLeft:140, marginTop:12, color:'#43CFA8'}}>Cancel</Text>
+                </TouchableOpacity>
+                </Card>
+              </Modal>
+            </Portal>
+          </Provider>
+          
       </View>
     );
   }
@@ -208,7 +214,8 @@ const styles=StyleSheet.create({
   },
   smile: {
     width: 36,
-    height: 36
+    height: 36,
+    marginLeft:130
   },
   sad: {
     width: 36,
