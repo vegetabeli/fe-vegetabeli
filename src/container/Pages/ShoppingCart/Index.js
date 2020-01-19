@@ -21,7 +21,7 @@ class ShoppingCart extends Component {
                 </View>
 
                 {/* tidak ada transaksi */}
-                <View style={styles.content}>
+                {/* <View style={styles.content}>
                     <Image source={noTransaction} style={styles.img}/>
                     <Text style={styles.textTop}>Keranjangmu masih kosong nih :(</Text>
                     <Text style={styles.textBot}>Cari produk kebutuhanmu hari ini,</Text>
@@ -36,10 +36,10 @@ class ShoppingCart extends Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </View> */}
 
                 {/*ada transaksi */}
-                {/* <View style={{flexDirection: "column", height: 20, elevation: 3, marginTop: 3}}>
+                <View style={{flexDirection: "column", height: 20, elevation: 3, marginTop: 3}}>
                     <View style={{flexDirection: 'row', alignItems: 'center', marginHorizontal: 16, justifyContent: 'space-between'}}>
                         <View style={{flexDirection: 'row'}}>
                             <Text style={{fontSize: 14,}}>
@@ -132,14 +132,14 @@ class ShoppingCart extends Component {
                             </View>
                         </View>
                         <View  style={{flexDirection: 'row', width: '100%', height: 45, marginTop: 5}}>
-                            <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FF5063', width: '100%', borderRadius: 7}}>
+                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Payment') }} style={{flexDirection: 'row', justifyContent: 'center', backgroundColor: '#FF5063', width: '100%', borderRadius: 7}}>
                                 <Text style={{fontSize: 20, color: 'white', alignSelf: 'center'}}>
                                     Lanjutkan
                                 </Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                </View> */}
+                </View>
 
             </View>
         )
