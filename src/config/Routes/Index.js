@@ -184,11 +184,10 @@ const RouteUser = createBottomTabNavigator(
   },
 );
 
-const Router = createSwitchNavigator(
+const Router = createStackNavigator(
   {
     RouteGuest,
-    RouteUser,
-    // HomeStack, //HAPUS
+    RouteUser,    // HomeStack, //HAPUS
   },
   {
     headerMode: 'none',
