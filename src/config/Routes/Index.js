@@ -19,8 +19,14 @@ import {
   editProfile,
   historyTrans,
   listTrans,
-  detailTrans,
+  detailTrans, 
   ShoppingCart,
+  Isi,
+  Isi2,
+  Isi3,
+  Isi4,
+  Isi5,
+  Isi6,Isi7,Isi8,Isi9,Isi10,Isi11,Isi12,Isi13,Isi14,Isi15,Isi16,Isi17,Isi18,Isi19, Payment,PaymentSucces
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
@@ -33,6 +39,8 @@ const HomeStack = createStackNavigator(
   {
     ListShop,
     Shop,
+    Payment,
+    PaymentSucces,
     ListCategory,
     ShoppingCart,
   },
@@ -46,7 +54,7 @@ const TransactionStack = createStackNavigator(
   {
     Transaction,
     historyTrans,
-    listTrans,
+    listTrans,  
     detailTrans,
   },
   {
@@ -57,7 +65,7 @@ const TransactionStack = createStackNavigator(
 
 const HelpsStack = createStackNavigator(
   {
-    Helps
+    Helps,Isi,Isi2,Isi3,Isi4,Isi5,Isi6,Isi7,Isi8,Isi9,Isi10,Isi11,Isi12,Isi13,Isi14,Isi15,Isi16,Isi17,Isi18,Isi19
   },
   {
     headerMode: 'none',
