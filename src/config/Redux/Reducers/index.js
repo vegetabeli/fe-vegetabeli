@@ -1,11 +1,12 @@
 import {combineReducers} from 'redux';
 
-import postRegister from '../Reducers/User/LoginRegister/postRegister'
-import getLogin from '../Reducers/User/LoginRegister/getLogin'
-import emailInsert from '../Reducers/User/ForgotPassword/emailInsert'
-import codeInsert from '../Reducers/User/ForgotPassword/codeInsert'
-import passwordInsert from '../Reducers/User/ForgotPassword/passwordInsert'
-import getLoginPhone from '../Reducers/User/LoginRegister/getLoginPhone'
+import postRegister from '../Reducers/User/LoginRegister/postRegister';
+import getLogin from '../Reducers/User/LoginRegister/getLogin';
+import emailInsert from '../Reducers/User/ForgotPassword/emailInsert';
+import codeInsert from '../Reducers/User/ForgotPassword/codeInsert';
+import passwordInsert from '../Reducers/User/ForgotPassword/passwordInsert';
+import getLoginPhone from '../Reducers/User/LoginRegister/getLoginPhone';
+import getProduct from '../Reducers/Product/product';
 
 const reducers = combineReducers({
   postRegister,
@@ -13,7 +14,8 @@ const reducers = combineReducers({
   emailInsert,
   codeInsert,
   passwordInsert,
-  getLoginPhone
-})
+  getLoginPhone,
+  getProduct,
+});
 
-export default reducers
+export default reducers;

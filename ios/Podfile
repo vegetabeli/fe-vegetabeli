@@ -46,6 +46,8 @@ target 'feVegetabeli' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'feVegetabeliTests' do
     inherit! :search_paths
     # Pods for testing

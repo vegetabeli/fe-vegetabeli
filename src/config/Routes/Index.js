@@ -20,6 +20,12 @@ import {
   historyTrans,
   listTrans,
   detailTrans,
+  sellerHome,
+  sellerProfile,
+  sellerLoad,
+  sellerProduct,
+  sellerProductDetail,
+  sellerCamera,
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
 // import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
@@ -34,7 +40,7 @@ const HomeStack = createStackNavigator(
   {
     ListShop,
     Shop,
-    ListCategory
+    ListCategory,
   },
   {
     headerMode: 'none',
@@ -52,19 +58,18 @@ const TransactionStack = createStackNavigator(
   {
     headerMode: 'none',
     initialRouteName: 'Transaction',
-  }
-)
+  },
+);
 
 const HelpsStack = createStackNavigator(
   {
-    Helps
+    Helps,
   },
   {
     headerMode: 'none',
     initialRouteName: 'Helps',
   },
 );
-
 
 const ProfileGuestStack = createStackNavigator(
   {
@@ -89,10 +94,34 @@ const ProfileUserStack = createStackNavigator(
     privacyPolicy,
     aboutUs,
     editProfile,
+    // sellerHome,
+    // sellerProfile,
+    // sellerLoad,
+    // sellerProduct,
+    // sellerProductDetail,
   },
   {
     headerMode: 'none',
     initialRouteName: 'Profile',
+    // initialRouteName: 'sellerHome',
+  },
+);
+
+const ProfileSellerStack = createStackNavigator(
+  {
+    termOfUse,
+    privacyPolicy,
+    aboutUs,
+    sellerHome,
+    sellerProfile,
+    sellerLoad,
+    sellerProduct,
+    sellerProductDetail,
+    sellerCamera,
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'sellerHome',
   },
 );
 
@@ -184,10 +213,55 @@ const RouteUser = createBottomTabNavigator(
   },
 );
 
+const RouteSeller = createBottomTabNavigator(
+  {
+    Belanja: {
+      screen: HomeStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="store" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Transaksi: {
+      screen: TransactionStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="receipt" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Bantuan: {
+      screen: HelpsStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="help" size={24} color={tintColor} />
+        ),
+      },
+    },
+
+    Profil: {
+      screen: ProfileSellerStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="user" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+  },
+  {
+    initialRouteName: 'Profil',
+    tabBarOptions: {
+      activeTintColor: '#F15B5D',
+    },
+  },
+);
+
 const Router = createSwitchNavigator(
   {
     RouteGuest,
-    RouteUser
+    RouteUser,
+    RouteSeller,
   },
   {
     headerMode: 'none',
