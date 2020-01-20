@@ -6,6 +6,8 @@ import emailInsert from '../Reducers/User/ForgotPassword/emailInsert'
 import codeInsert from '../Reducers/User/ForgotPassword/codeInsert'
 import passwordInsert from '../Reducers/User/ForgotPassword/passwordInsert'
 import getLoginPhone from '../Reducers/User/LoginRegister/getLoginPhone'
+import patchUserBuyer from '../Reducers/User/CrudUser/patchUserBuyer'
+import getUserBuyer from '../Reducers/User/CrudUser/getUserBuyer'
 
 const reducers = combineReducers({
   postRegister,
@@ -13,7 +15,9 @@ const reducers = combineReducers({
   emailInsert,
   codeInsert,
   passwordInsert,
-  getLoginPhone
+  getLoginPhone,
+  patchUserBuyer,
+  getUserBuyer
 })
 
 export default reducers
