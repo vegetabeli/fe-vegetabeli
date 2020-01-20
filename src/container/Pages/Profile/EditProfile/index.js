@@ -4,8 +4,47 @@ import {Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import IconUser from 'react-native-vector-icons/FontAwesome';
 import styles from './style';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { getUserBuyer } from '../../../../config/Redux/Actions/User/CrudUser/getUserBuyer'
+import { patchUserBuyer } from "../../../../config/Redux/Actions/User/CrudUser/patchUserBuyer";
+import AsyncStorage from '@react-native-community/async-storage';
+
+
 
 class editProfile extends Component {
+    state = {
+        data: [],
+        name: '',
+        email: '',
+        phone: '',
+        photo: '',
+        defaultName: '',
+        defaultEmail: '',
+        defaultPhone: '',
+        defaultPhoto: ''
+    }
+
+    getProfile = async () => {
+        const id_user = JSON.parse(await AsyncStorage.getItem('@id_user'))
+        const token = JSON.parse(await AsyncStorage.getItem('@accessToken'))
+
+        await this.props.getUserBuyer(id_user, token)
+        console.log('response data', this.props.dataUser)
+        this.setState({
+            ...this.state,
+            data: this.props.dataUser.data[0]
+        })
+    }
+
+    async componentDidMount() {
+        // const token = JSON.parse(await AsyncStorage.getItem('@accessToken'))
+        // console.log('sultan', token)
+        await this.getProfile()
+        console.log('tes', this.state.data)
+        
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -74,4 +113,19 @@ class editProfile extends Component {
     }
 }
 
-export default editProfile;
+const mapStateToProps = state => {
+    return {
+        dataUser : state.getUserBuyer.dataUser
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(
+        {
+            getUserBuyer
+        },
+        dispatch
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(editProfile);
