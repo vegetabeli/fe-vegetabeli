@@ -10,7 +10,7 @@ class historyTrans extends Component {
                 <View style={styles.header}>
                     <TouchableOpacity>
                         <Icon name= 'chevron-left' color='#FF5063' size={25}
-                        onPress={() => this.props.navigation.navigate('listTrans')}/>
+                        onPress={() => this.props.navigation.navigate('Transaction')}/>
                     </TouchableOpacity>
                     <Text style={styles.textHeader}>
                         Riwayat Transaksi

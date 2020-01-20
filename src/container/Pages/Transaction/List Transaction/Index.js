@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './style';
 import { ScrollView } from 'react-native-gesture-handler';
+import {getCartByIdUser} from '../../../../config/Redux/Actions/Transaction/getCartByIdUser'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 
 class listTrans extends Component {
+    async componentDidMount() {
+        let id_user = await AsyncStorage.getItem('@id_user')
+        await this.props.getCartByIdUser(null,id_user)
+        console.log(this.props.cartData)
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -83,4 +92,19 @@ class listTrans extends Component {
     }
 }
 
-export default listTrans;
+const mapStateToProps = state => {
+    return {
+        cartData: state.getCartByIdUser.cartData
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(
+        {
+            getCartByIdUser
+        },
+        dispatch
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(listTrans);

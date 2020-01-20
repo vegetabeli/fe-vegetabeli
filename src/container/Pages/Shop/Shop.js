@@ -12,20 +12,113 @@ import {Button, Icon, SearchBar} from 'react-native-elements';
 import driver from '../../../assets/image/bike.png';
 import Category from '../../../components/moleculs/Category/Category';
 import ProductBestSeller from '../../../components/moleculs/ProductBestSeller/ProductBestSeller';
+import {getMarket} from '../../../config/Redux/Actions/Shop/getMarket'
+import {getProductMarket} from '../../../config/Redux/Actions/Shop/getProductMarket'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Belanja extends Component {
-  conso
   state = {
     search: '',
+    idMarket: '',
+    market: [],
+    product: [],
+    totalItem: {},
+    newCart: {}
   };
+
+  handleCart = async () => {
+    let totalItem = this.state.totalItem
+    let cart = {}
+    for (let i in totalItem) {
+      if(totalItem[i] != 0) {
+        cart[i] = totalItem[i]
+      }
+    }
+    await this.setState({
+      newCart: cart
+    })
+    this.props.navigation.push('ShoppingCart', {
+      cart: this.state.newCart,
+      id_market: this.state.idMarket,
+      market: this.state.market
+    })
+  }
 
   updateSearch = search => {
     this.setState({search});
   };
-  // onPress = () => {
-  //   console.log("PROPS", this.props)
-  //   this.props.navigation.navigate('ListCategory')
-  // }
+
+  handlePlus = async (name) => {
+  this.state.totalItem[name] += 1
+    this.forceUpdate()
+    console.log('plus',this.state.totalItem)
+  }
+
+  handleMinus = async (name) => {
+    this.state.totalItem[name] -= 1
+    this.forceUpdate()
+    console.log('minus', this.state.totalItem)
+  }
+
+  async componentDidMount() {
+    const id_market = await this.props.navigation.getParam('id_market')
+    await this.setState({
+      idMarket: id_market
+    })
+    const token = await AsyncStorage.getItem('@accessToken')
+    if(!id_market) {
+      this.props.getMarket(token, '02acccfb')
+      .then(async result => {
+        await this.setState({
+          market: result.value.data.data[0]
+        })
+        console.log('matks',this.state.market)
+        await this.props.getProductMarket(token, '02acccfb')
+        await this.setState({
+          product: this.props.product.data.data
+        })
+        if (this.state.product.length > 0) {
+          let order = {}
+          this.state.product.map(data => {
+            return (
+              order[`${data.name}`] = 0
+            )
+          })
+          this.setState({
+            totalItem: order
+          })
+        } 
+      })
+
+      .catch(err => {
+        console.log(err)
+      })
+    } else {
+      await this.props.getMarket(token, id_market)
+      await this.setState({
+        market: this.props.marketData.data.data[0]
+      })
+      await this.props.getProductMarket(token, id_market)
+      await this.setState({
+        product: this.props.product.data.data
+      })
+      if(this.state.product.length > 0) {
+        let order = {}
+        this.state.product.map(data => {
+          return (
+            order[`${data.name}`] = 0
+          )
+        })
+        this.setState({
+          totalItem: order
+        })
+      } 
+      console.log('hqhqhqhqh', this.state.totalItem)
+    }
+    
+  }
 
   render() {
     const {search} = this.state;
@@ -55,7 +148,7 @@ class Belanja extends Component {
               color="skyblue"
               containerStyle={styles.iconStyle}
             />
-            <Text style={styles.textSize}>Bakul Dawet</Text>
+            <Text style={styles.textSize}>{this.state.market.name}</Text>
           </View>
           <View style={styles.btnGanti}>
             <Button
@@ -84,15 +177,18 @@ class Belanja extends Component {
             </View>
             <View style={styles.bestSeller}>
               <Text style={styles.fontBestSell}>Produk Bestseller</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('iPaySuccess')}>
                 <Text style={styles.fontSeeAll}>Lihat semua</Text>
               </TouchableOpacity>
             </View>
-            <ProductBestSeller />
+            <ProductBestSeller handlePlus={(name) => this.handlePlus(name)} 
+              handleMinus={(name) => this.handleMinus(name)}
+             total={this.state.totalItem} product={this.state.product} />
           </View>
         </ScrollView>
         <View style={styles.floatingButton}>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('cart')}>
+          <TouchableOpacity style={styles.button}
+           onPress={() => this.handleCart()}>
             <Icon
               name="shopping-cart"
               type="font-awesome"
@@ -106,7 +202,24 @@ class Belanja extends Component {
   }
 }
 
-export default Belanja;
+const mapStateToProps = state => {
+  return {
+    marketData: state.getMarket.marketData,
+    product: state.getProductMarket.product
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getMarket,
+      getProductMarket
+    },
+    dispatch
+  )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Belanja);
 
 const styles = StyleSheet.create({
   parent: {

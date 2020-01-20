@@ -7,6 +7,17 @@ import { Container, Header, Content, Form, Item, Input, Footer, Text, Label, Lef
 // import styles from './ScreenkuCSS'
 
 export default class Screenku extends React.Component {
+    state = {
+        id_cart: 0
+    }
+
+    async componentDidMount() {
+        let id = await this.props.navigation.getParam('id_cart')
+        this.setState({
+            id_cart: id
+        })
+    }
+
     render() {
         return (
             <Container>
@@ -35,12 +46,12 @@ export default class Screenku extends React.Component {
                     <Text style={styles.suksesFont}>Sukses!</Text>
                     <Text style={styles.ket}>
                         <Text style={styles.ket}>Belanja kamu telah kami proses ordernya dengan kode </Text>
-                        <Text style={styles.sukses}>28553</Text>
+                        <Text style={styles.sukses}>{this.state.id_cart}</Text>
                     </Text>
                     <TouchableOpacity>
                         <Text style={styles.cekTransaksi}>Cek Transaksi</Text>
                     </TouchableOpacity>
-                    <Button style={styles.button}>
+                    <Button style={styles.button} onPress={() => this.props.navigation.navigate('Shop')}>
                         <Text style={styles.pesan}>Pesan Sekarang</Text>
                     </Button>
                 </View>
