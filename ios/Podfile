@@ -34,6 +34,8 @@ target 'feVegetabeli' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+<<<<<<< HEAD
+=======
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
@@ -44,10 +46,17 @@ target 'feVegetabeli' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+<<<<<<< HEAD
+>>>>>>> 771c5a78696c0cb7267c2d450b91a5a4ed5505fc
+=======
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
+<<<<<<< HEAD
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+=======
+>>>>>>> 4372a5b789639429cada016566d4d177a15e4850
+>>>>>>> f17f44f6588178655864f68253167671872c0b07
   target 'feVegetabeliTests' do
     inherit! :search_paths
     # Pods for testing

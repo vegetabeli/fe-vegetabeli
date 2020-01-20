@@ -1,15 +1,37 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Icon, SearchBar} from 'react-native-elements';
+import {StyleSheet, Text, TouchableOpacity, View, ScrollView, Image} from 'react-native';
+import {Icon, SearchBar, Button} from 'react-native-elements';
+import {bindActionCreators} from 'redux'
+import { connect} from 'react-redux'
+import {getAllMarket} from '../../../config/Redux/Actions/Choose Market/getAllMarket'
+import AsyncStorage from '@react-native-community/async-storage'
 
 class ListShop extends Component {
   state = {
     search: '',
+    market: []
   };
 
   updateSearch = search => {
     this.setState({search});
   };
+
+  handleSelectMarket = async (id_market) => {
+    await this.props.navigation.push('Shop', {
+      id_market:id_market
+    })
+    
+  }
+
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem('@accessToken')
+    await this.props.getAllMarket(token)
+    console.log('door step', this.props.marketData) 
+    await this.setState({
+      market: this.props.marketData.data.data
+    })
+    console.log('on my own',this.state.market)
+  }
 
   render() {
     const {search} = this.state;
@@ -19,7 +41,7 @@ class ListShop extends Component {
         <View style={styles.navbar}>
             <View style={styles.btnBack}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('RouteTab')}>
+            onPress={() => this.props.onPress}>
             <Icon name="chevron-left" size={40} color="#F15B5D" />
           </TouchableOpacity>
           <View style={styles.navbarTextView}>
@@ -37,13 +59,60 @@ class ListShop extends Component {
           />
           </View>
         </View>
+        <ScrollView>
+          {this.state.market.map(data => {
+            return (
+              <View style={styles.listProduk}>
+                <View style={styles.produkStyle}>
+                  <View style={styles.cardStyle}>
+                    <Image source={{ uri: `http://192.168.6.169:5000/uploads/market/${data.photo}`}} height={100} width={100}/>
+                  </View>
+                  <View>
+                    <Text style={styles.fontBestSell}>
+                      {data.name}
+              </Text>
+                    <Text style={styles.fontSeeAll}>
+                      {data.location}
+              </Text>
+                  </View>
+                </View>
+                <View style={styles.produkStyle2}>
+                  <TouchableOpacity>
+                    <Button
+                      title="Tambahkan"
+                      titleStyle={styles.titleBtn}
+                      buttonStyle={styles.btnColor}
+                      containerStyle={styles.marginBtn}
+                      onPress={() => this.handleSelectMarket(data.id_market)}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )
+          })}
+        </ScrollView>
         
       </View>
     );
   }
 }
 
-export default ListShop;
+const mapStateToProps = state => {
+  return {
+    marketData: state.getAllMarket.marketData
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getAllMarket
+    },
+    dispatch
+  )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListShop);
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +121,7 @@ const styles = StyleSheet.create({
   },
   // Navbar
   navbar: {
-    marginBottom: 30,
+    marginBottom: 15,
     height: 100,
     backgroundColor: 'white',
     elevation: 3,
@@ -80,5 +149,66 @@ const styles = StyleSheet.create({
   },
   search: {
     justifyContent: 'flex-start'
-  }
+  },
+  btnColor: {
+    backgroundColor: '#F15B5D',
+    width: 90,
+    height: 30,
+    borderRadius: 6,
+    elevation: 2,
+  },
+  marginBtn: {
+    marginBottom: 10,
+  },
+  titleBtn: {
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  fontBestSell: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: '5%',
+  },
+  fontSeeAll: {
+    color: '#F15B5D',
+    fontSize: 13,
+    marginLeft: '5%',
+  },
+  listProduk: {
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    marginBottom: 12,
+    marginHorizontal: '2%',
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderBottomColor: '#E5E5E5',
+    borderTopColor: '#E5E5E5',
+
+  },
+  cardStyle: {
+    height: 110,
+    width: 95,
+    alignItems: 'stretch',
+    borderRadius: 8,
+    elevation: 2.5,
+    backgroundColor: 'white',
+    marginLeft: '2%',
+    marginBottom: 10,
+  },
+  produkStyle: {
+    flexDirection: 'row',
+    alignContent: 'center',
+    marginTop: 10
+  },
+  produkStyle1: {
+    flexDirection: 'column',
+    position: 'absolute',
+    marginLeft: '35%',
+    marginTop: '5%',
+  },
+  produkStyle2: {
+    position: 'absolute',
+    alignSelf: 'flex-end',
+    marginLeft: '75%',
+  },
 });

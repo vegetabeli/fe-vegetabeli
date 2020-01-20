@@ -38,7 +38,11 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
+<<<<<<< HEAD
+	<string></string>
+=======
 	<string/>
+>>>>>>> 771c5a78696c0cb7267c2d450b91a5a4ed5505fc
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,6 +57,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+<<<<<<< HEAD
+=======
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -74,6 +80,14 @@
 		<string>Roboto_medium.ttf</string>
 		<string>Roboto.ttf</string>
 		<string>rubicon-icon-font.ttf</string>
+		<string>AirbnbCerealBlack.ttf</string>
+		<string>AirbnbCerealBold.ttf</string>
+		<string>AirbnbCerealBook.ttf</string>
+		<string>AirbnbCerealExtraBold.ttf</string>
+		<string>AirbnbCerealLight.ttf</string>
+		<string>AirbnbCerealMedium.ttf</string>
+		<string>brown.ttf</string>
 	</array>
+>>>>>>> 771c5a78696c0cb7267c2d450b91a5a4ed5505fc
 </dict>
 </plist>

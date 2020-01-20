@@ -5,15 +5,70 @@ import ShopBag from 'react-native-vector-icons/FontAwesome5';
 import IconHome from 'react-native-vector-icons/Entypo';
 import Arrow from 'react-native-vector-icons/AntDesign';
 import styles from './style';
+import {getCartByIdCart} from '../../../../config/Redux/Actions/Transaction/getCartByIdCart'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 class detailTrans extends Component {
+    state ={
+        cartData: [],
+        date_transaction: '',
+        deliveryFee: 10000,
+        product: [],
+        price: [],
+        quantity: []
+    }
+
+    cardData = async () => {
+        for(let i = 0; i< this.state.product.length; i++) {
+            <View style={{ height: '60%', borderBottomWidth: 1, borderColor: '#EFEAEA', flexDirection: 'row' }}>
+                <View style={{ paddingTop: 25, paddingLeft: 20 }}>
+                    <Text style={{ fontSize: 13, fontWeight: 'bold' }}>
+                        {this.state.quantity[i]}
+                    </Text>
+                </View>
+                <View style={{ flexDirection: 'column', paddingLeft: 20, paddingTop: 12 }}>
+                    <View>
+                        <Text style={styles.nameItem}>{this.state.product[i]}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.priceItem}>Rp {this.state.price[i]}/pcs</Text>
+                    </View>
+                </View>
+                <View style={{ paddingTop: 25, paddingLeft: 85 }}>
+                    <Text style={{ fontSize: 13, fontWeight: 'bold' }}>
+                        Rp {this.state.quantity[i] * this.state.price[i]}
+                    </Text>
+                </View>
+            </View>
+        }
+    }
+
+    async componentDidMount() {
+        let id_cart = await this.props.navigation.getParam('id_cart')
+        console.log('iddd', id_cart)
+        await this.props.getCartByIdCart(null, id_cart)
+        console.log('carrrttt', this.props.cartData)
+        this.setState({
+            cartData: this.props.cartData.data.data[0],
+            date_transaction: this.props.cartData.data.data[0].date_transaction.slice(0,10),
+            product: this.props.cartData.data.data[0].product.split(','),
+            price: this.props.cartData.data.data[0].price.split(','),
+            quantity: this.props.cartData.data.data[0].quantity.split(','),
+        })
+        console.log('stateee', this.state.cartData)
+        console.log('dateee', this.state.date_transaction)
+        console.log(this.state.product)
+        console.log(this.state.price)
+        console.log(this.state.quantity)
+    }
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity>
                         <Icon name= 'chevron-left' color='#FF5063' size={25}
-                        onPress={() => this.props.navigation.navigate('listTrans')}/>
+                            onPress={() => this.props.navigation.navigate('Transaction')}/>
                     </TouchableOpacity>
                     <Text style={styles.textHeader}>
                         Detail Transaksi
@@ -48,7 +103,7 @@ class detailTrans extends Component {
                             </View>
                             <View style={styles.codeShop}>
                                 <Text style={{fontSize: 14,}}>
-                                    27940
+                                    {this.state.cartData.id_cart}
                                 </Text>
                             </View>
                         </View>
@@ -70,7 +125,7 @@ class detailTrans extends Component {
                                 <Text style={styles.textOrderDate}>Tanggal Order</Text>
                             </View>
                             <View>
-                                <Text style={{fontSize: 13}}>16 Januari 2020</Text>
+                                <Text style={{fontSize: 13}}>{this.state.date_transaction}</Text>
                             </View>
                         </View>
                         <View style={{paddingLeft: 23}}>
@@ -82,7 +137,7 @@ class detailTrans extends Component {
                                 <Text style={styles.textOrderDate}>Tanggal Pengantaran</Text>
                             </View>
                             <View>
-                                <Text style={{fontSize: 13}}>17 Januari 2020</Text>
+                                    <Text style={{ fontSize: 13 }}>{this.state.date_transaction}</Text>
                             </View>
                         </View>
                     </View>
@@ -115,26 +170,30 @@ class detailTrans extends Component {
                             Ringkasan Pesanan
                         </Text>
                     </View>
-                    <View style={{height: '60%',  borderBottomWidth: 1, borderColor: '#EFEAEA', flexDirection: 'row'}}>
-                        <View style={{paddingTop: 25, paddingLeft: 20}}>
-                            <Text style={{fontSize: 13, fontWeight: 'bold'}}>
-                                1x
+                   {this.state.product.map((itemValue, itemIndex) => {
+                       return (
+                           <View style={{ height: '60%', borderBottomWidth: 1, borderColor: '#EFEAEA', flexDirection: 'row' }}>
+                               <View style={{ paddingTop: 25, paddingLeft: 20 }}>
+                                   <Text style={{ fontSize: 13, fontWeight: 'bold' }}>
+                                       {this.state.quantity[itemIndex]}
                             </Text>
-                        </View>
-                        <View style={{flexDirection: 'column', paddingLeft: 20, paddingTop: 12}}>
-                            <View>
-                                <Text style={styles.nameItem}>Tempe Bungkus Daun</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.priceItem}>Rp 6.000/pcs</Text>
-                            </View>
-                        </View>
-                        <View style={{paddingTop: 25, paddingLeft: 85}}>
-                            <Text style={{fontSize: 13, fontWeight: 'bold'}}>
-                                Rp 6.000
+                               </View>
+                               <View style={{ flexDirection: 'column', paddingLeft: 20, paddingTop: 12 }}>
+                                   <View>
+                                       <Text style={styles.nameItem}>{this.state.product[itemIndex]}</Text>
+                                   </View>
+                                   <View>
+                                       <Text style={styles.priceItem}>Rp {this.state.price[itemIndex]}/pcs</Text>
+                                   </View>
+                               </View>
+                               <View style={{ paddingTop: 25, paddingLeft: 85 }}>
+                                   <Text style={{ fontSize: 13, fontWeight: 'bold' }}>
+                                       Rp {this.state.quantity[itemIndex] * this.state.price[itemIndex]}
                             </Text>
-                        </View>
-                    </View>
+                               </View>
+                           </View>
+                       )
+                   })}
                 </View>
                 <View style={{flexDirection: "column", height: 150,  backgroundColor: 'white', elevation: 3, marginTop: 10,paddingHorizontal: 16}}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', height: '65%', borderBottomWidth: 1, borderColor: '#EFEAEA'}}>
@@ -151,10 +210,10 @@ class detailTrans extends Component {
                         </View>
                         <View>
                             <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 13}}>
-                                Rp 6.000
+                                Rp {this.state.cartData.total}
                             </Text>
                             <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 7}}>
-                                Rp 10.000
+                                Rp {this.state.deliveryFee}
                             </Text>
                             <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 7}}>
                                 Rp 0
@@ -169,7 +228,7 @@ class detailTrans extends Component {
                         </View>
                         <View>
                             <Text style={{fontSize: 13, fontWeight: 'bold', paddingTop: 13}}>
-                                Rp 16.000
+                                    Rp {this.state.cartData.total + this.state.deliveryFee}
                             </Text>
                         </View>
                     </View>
@@ -197,4 +256,19 @@ class detailTrans extends Component {
     }
 }
 
-export default detailTrans;
+const mapStateToProps = state => {
+    return {
+        cartData: state.getCartByIdCart.cartData
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(
+        {
+            getCartByIdCart
+        },
+        dispatch
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(detailTrans);

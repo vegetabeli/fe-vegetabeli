@@ -26,25 +26,35 @@ import {
   sellerProduct,
   sellerProductDetail,
   sellerCamera,
+  ShoppingCart,
+  Isi1,
+  Isi2,
+  Isi3,
+  Isi4,
+  Isi5,
+  Isi6,Isi7,Isi8,Isi9,Isi10,Isi11,Isi12,Isi13,Isi14,Isi15,Isi16,Isi17,Isi18,Isi19, Payment,PaymentSucces
 } from '../../container/Pages/index';
 import LoginRegisterHome from '../../container/Pages/LoginRegister/Home';
-// import Register from '../../container/Pages/LoginRegister/LoginRegister/Register';
-// import Login from '../../container/Pages/LoginRegister/LoginRegister/Login';
 import insertEmail from '../../container/Pages/ForgotPassword/insertEmail';
 import insertCode from '../../container/Pages/ForgotPassword/insertCode';
 import insertPassword from '../../container/Pages/ForgotPassword/insertPassword';
 import verifyOtp from '../../container/Pages/LoginRegister/LoginRegister/otp/';
 import {Icon} from 'react-native-elements';
+import iPaySuccess from '../../container/Pages/iPaySuccess';
 
 const HomeStack = createStackNavigator(
   {
     ListShop,
     Shop,
+    Payment,
+    PaymentSucces,
     ListCategory,
+    ShoppingCart,
+    iPaySuccess
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Shop',
+    initialRouteName: 'Shop', //Shop
   },
 );
 
@@ -52,7 +62,7 @@ const TransactionStack = createStackNavigator(
   {
     Transaction,
     historyTrans,
-    listTrans,
+    listTrans,  
     detailTrans,
   },
   {
@@ -63,7 +73,7 @@ const TransactionStack = createStackNavigator(
 
 const HelpsStack = createStackNavigator(
   {
-    Helps,
+    Helps,Isi1,Isi2,Isi3,Isi4,Isi5,Isi6,Isi7,Isi8,Isi9,Isi10,Isi11,Isi12,Isi13,Isi14,Isi15,Isi16,Isi17,Isi18,Isi19
   },
   {
     headerMode: 'none',
@@ -265,7 +275,7 @@ const Router = createSwitchNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'RouteGuest',
+    initialRouteName: 'RouteGuest', //RouteGuest
   },
 );
 
