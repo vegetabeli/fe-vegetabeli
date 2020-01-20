@@ -99,10 +99,11 @@ class Login extends Component {
           else {
             console.log('gokz',this.props.loginData)
             const data = this.props.loginData.data.data
-            const {token, id_user, role} = data
+            const {token, id_user, role, email} = data
             await AsyncStorage.setItem('@accessToken', JSON.stringify(token))
             await AsyncStorage.setItem('@id_user', JSON.stringify(id_user))
             await AsyncStorage.setItem('@role', JSON.stringify(role))
+            await AsyncStorage.setItem('@email', JSON.stringify(email))
             ToastAndroid.showWithGravity(
               'Login Success!',
               ToastAndroid.SHORT,
@@ -163,10 +164,11 @@ class Login extends Component {
           else {
             console.log('gokz phone', this.props.loginPhoneData)
             const data = this.props.loginPhoneData.data.data
-            const { token, id_user, role } = data
+            const { token, id_user, role, email } = data
             await AsyncStorage.setItem('@accessToken', JSON.stringify(token))
             await AsyncStorage.setItem('@id_user', JSON.stringify(id_user))
             await AsyncStorage.setItem('@role', JSON.stringify(role))
+            await AsyncStorage.setItem('@email', JSON.stringify(email))
             ToastAndroid.showWithGravity(
               'Login Success!',
               ToastAndroid.SHORT,

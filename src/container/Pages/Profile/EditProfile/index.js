@@ -13,7 +13,6 @@ class editProfile extends Component {
                     <TouchableOpacity>
                         <Icon name= 'chevron-left' color='#FF5063' size={25} 
                         onPress={() => this.props.navigation.navigate('Profile')}/>
-                        
                     </TouchableOpacity>
                     <Text style={styles.textHeader}>
                         Edit Profil

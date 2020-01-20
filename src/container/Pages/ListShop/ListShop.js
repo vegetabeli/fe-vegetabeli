@@ -1,15 +1,37 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, ScrollView, Image} from 'react-native';
 import {Icon, SearchBar, Button} from 'react-native-elements';
+import {bindActionCreators} from 'redux'
+import { connect} from 'react-redux'
+import {getAllMarket} from '../../../config/Redux/Actions/Choose Market/getAllMarket'
+import AsyncStorage from '@react-native-community/async-storage'
 
 class ListShop extends Component {
   state = {
     search: '',
+    market: []
   };
 
   updateSearch = search => {
     this.setState({search});
   };
+
+  handleSelectMarket = async (id_market) => {
+    await this.props.navigation.push('Shop', {
+      id_market:id_market
+    })
+    
+  }
+
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem('@accessToken')
+    await this.props.getAllMarket(token)
+    console.log('door step', this.props.marketData) 
+    await this.setState({
+      market: this.props.marketData.data.data
+    })
+    console.log('on my own',this.state.market)
+  }
 
   render() {
     const {search} = this.state;
@@ -37,34 +59,60 @@ class ListShop extends Component {
           />
           </View>
         </View>
-        <View style={styles.listProduk}>
-          <View style={styles.produkStyle}>
-            <View style={styles.cardStyle}></View>
-            <View>
-              <Text style={styles.fontBestSell}>
-                ndkjakjadbknkjfnjknsjknjfnknkn
+        <ScrollView>
+          {this.state.market.map(data => {
+            return (
+              <View style={styles.listProduk}>
+                <View style={styles.produkStyle}>
+                  <View style={styles.cardStyle}>
+                    <Image source={{ uri: `http://192.168.6.169:5000/uploads/market/${data.photo}`}} height={100} width={100}/>
+                  </View>
+                  <View>
+                    <Text style={styles.fontBestSell}>
+                      {data.name}
               </Text>
-              <Text style={styles.fontSeeAll}>
-                fknkfsnklnlkfkjfkjfkjakjfhkjfkjbkdabnwn
+                    <Text style={styles.fontSeeAll}>
+                      {data.location}
               </Text>
-            </View>
-          </View>
-          <View style={styles.produkStyle2}>
-            <Button
-              title="Tambahkan"
-              titleStyle={styles.titleBtn}
-              buttonStyle={styles.btnColor}
-              containerStyle={styles.marginBtn}
-            />
-          </View>
-        </View>
+                  </View>
+                </View>
+                <View style={styles.produkStyle2}>
+                  <TouchableOpacity>
+                    <Button
+                      title="Tambahkan"
+                      titleStyle={styles.titleBtn}
+                      buttonStyle={styles.btnColor}
+                      containerStyle={styles.marginBtn}
+                      onPress={() => this.handleSelectMarket(data.id_market)}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )
+          })}
+        </ScrollView>
         
       </View>
     );
   }
 }
 
-export default ListShop;
+const mapStateToProps = state => {
+  return {
+    marketData: state.getAllMarket.marketData
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getAllMarket
+    },
+    dispatch
+  )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListShop);
 
 const styles = StyleSheet.create({
   container: {
