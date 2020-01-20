@@ -106,6 +106,10 @@ class Payment extends React.Component {
             }
             this.props.addProductTaken(data2)
         }
+        this.state.cart['Ongkos Kirim'] = 10000
+        await this.state.price.push(10000)
+        await this.state.quantity.push(1)
+        await this.forceUpdate()
         const dataIpaymu = {
             key: '8ADEAEAB-1A03-4682-BFB6-C109E2A1A84C',
             action: 'payment',

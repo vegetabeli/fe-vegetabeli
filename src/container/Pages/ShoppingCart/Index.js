@@ -31,10 +31,13 @@ class ShoppingCart extends Component {
   }
 
     handleMinus = async (name) => {
+      if(this.state.cart[name] > 1) {
         this.state.cart[name] -= 1
         this.forceUpdate()
         this.total(this.state.product, Object.values(this.state.cart))
         this.totalProduct(Object.values(this.state.cart))
+
+      }
     }
 
     total = (x, y) => {
