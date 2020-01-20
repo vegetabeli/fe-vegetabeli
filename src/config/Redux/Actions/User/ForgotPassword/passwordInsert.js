@@ -1,10 +1,10 @@
 import axios from 'axios';
-const PORT = process.env.PORT
-const HOST = process.env.HOST
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
 
 // const URL_STRING = `http://${HOST}:5000/user/verifyforgot`;
-  
-export const passwordInsert = (data,id_user) => {
+
+export const passwordInsert = (data, id_user) => {
   return {
     type: 'PASSWORD_INSERT',
     payload: axios.patch(
@@ -15,6 +15,6 @@ export const passwordInsert = (data,id_user) => {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       },
-    )
+    ),
   };
 };

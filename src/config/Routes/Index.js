@@ -19,7 +19,13 @@ import {
   editProfile,
   historyTrans,
   listTrans,
-  detailTrans, 
+  detailTrans,
+  sellerHome,
+  sellerProfile,
+  sellerLoad,
+  sellerProduct,
+  sellerProductDetail,
+  sellerCamera,
   ShoppingCart,
   Isi1,
   Isi2,
@@ -62,8 +68,8 @@ const TransactionStack = createStackNavigator(
   {
     headerMode: 'none',
     initialRouteName: 'Transaction',
-  }
-)
+  },
+);
 
 const HelpsStack = createStackNavigator(
   {
@@ -74,7 +80,6 @@ const HelpsStack = createStackNavigator(
     initialRouteName: 'Helps',
   },
 );
-
 
 const ProfileGuestStack = createStackNavigator(
   {
@@ -99,10 +104,34 @@ const ProfileUserStack = createStackNavigator(
     privacyPolicy,
     aboutUs,
     editProfile,
+    // sellerHome,
+    // sellerProfile,
+    // sellerLoad,
+    // sellerProduct,
+    // sellerProductDetail,
   },
   {
     headerMode: 'none',
     initialRouteName: 'Profile',
+    // initialRouteName: 'sellerHome',
+  },
+);
+
+const ProfileSellerStack = createStackNavigator(
+  {
+    termOfUse,
+    privacyPolicy,
+    aboutUs,
+    sellerHome,
+    sellerProfile,
+    sellerLoad,
+    sellerProduct,
+    sellerProductDetail,
+    sellerCamera,
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'sellerHome',
   },
 );
 
@@ -194,10 +223,55 @@ const RouteUser = createBottomTabNavigator(
   },
 );
 
-const Router = createStackNavigator(
+const RouteSeller = createBottomTabNavigator(
+  {
+    Belanja: {
+      screen: HomeStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="store" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Transaksi: {
+      screen: TransactionStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="receipt" size={24} color={tintColor} />
+        ),
+      },
+    },
+    Bantuan: {
+      screen: HelpsStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="help" size={24} color={tintColor} />
+        ),
+      },
+    },
+
+    Profil: {
+      screen: ProfileSellerStack,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="user" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+  },
+  {
+    initialRouteName: 'Profil',
+    tabBarOptions: {
+      activeTintColor: '#F15B5D',
+    },
+  },
+);
+
+const Router = createSwitchNavigator(
   {
     RouteGuest,
-    RouteUser,    // HomeStack, //HAPUS
+    RouteUser,
+    RouteSeller,
   },
   {
     headerMode: 'none',
